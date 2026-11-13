@@ -4,6 +4,7 @@ import { Phone, Mail, Pin } from "@/components/Icons";
 import { BUSINESS, DOCS } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact Us & Schedule a Tour",
   description: "Call (716) 691-6000 or email info@classicsv.com to check availability or schedule a tour. 2425 Niagara Falls Blvd, Amherst, NY 14228.",
 };
@@ -46,6 +47,11 @@ export default function Contact() {
                     <a href={BUSINESS.mapsUrl}>Get directions</a>
                   </div>
                 </li>
+              </ul>
+              <ul className="good-to-know">
+                <li>Ample, easy parking on site</li>
+                <li>A Holiday Inn Express right across the street for out-of-town guests</li>
+                <li>15 to 20 minutes from many areas of Western New York</li>
               </ul>
               <p className="small">Thank you, {BUSINESS.family}</p>
             </div>

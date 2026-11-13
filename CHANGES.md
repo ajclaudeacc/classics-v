@@ -281,3 +281,24 @@ appear on the current site; everything else is the original content, sometimes s
   - New Virtual tours section with the two existing videos.
   - The extras cards now have photos and price tags.
 - VERIFY: the terms of agreement PDF is dated January 2025. The catering page images say 2025, but the catering PDF is the 2024 edition.
+
+### Sharper photos and fixes from the 20-visitor review
+Full details are in USER-TESTING-REPORT.md.
+- **Sharper photos:**
+  - The Photos page's large spots, panoramas and the full-screen viewer now load up to the 2,500px originals.
+  - Video previews use HD thumbnails where YouTube has them.
+  - Page-top photos on phones load a larger file.
+- **Faster on mobile data:** photos load only as you scroll near them, and the second slideshow photo waits a few seconds.
+- **Phones:**
+  - The main buttons now show on the first screen.
+  - The hiring bar is one line.
+  - Buttons, links and slideshow controls are at least 40–44px tall.
+  - Long buttons wrap on very narrow screens.
+- **Content:**
+  - "A prom" shortcut on the home page.
+  - Call and menu buttons at the top of the Funeral Gatherings page.
+  - A "good to know" list on the Contact page: parking, the Holiday Inn Express and travel time, using the current site's wording.
+  - An optional phone field on every contact form.
+  - The Catering and Meetings top buttons scroll to the menu instead of downloading it.
+- **Accessibility:** the preview notice is a labeled region, the gold photo-count badges pass the contrast check, and the home page's main buttons come before the slideshow controls when using the Tab key.
+- **Sharing and search:** a preview image when links are shared, an official address for each page, and a "Page not found" title.

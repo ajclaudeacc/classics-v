@@ -3,6 +3,7 @@ import CallToAction from "@/components/CallToAction";
 import { IMG, PDF } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/drop-off" },
   title: "Catering: Drop-Off Buffets & Boxed Lunches",
   description: "Drop-off buffets and boxed lunches from Classics V for graduations, company picnics, family reunions and celebrations.",
 };

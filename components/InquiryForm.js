@@ -78,15 +78,13 @@ export default function InquiryForm({ variant = "general", title, intro }) {
         </Field>
       </div>
 
-      <div className={wedding ? "form-row" : undefined}>
+      <div className="form-row">
         <Field id={id("email")} label="Email address" required error={errors.email}>
           <input id={id("email")} name="email" type="email" autoComplete="email" required {...aria("email")} />
         </Field>
-        {wedding && (
-          <Field id={id("phone")} label="Phone" error={errors.phone}>
-            <input id={id("phone")} name="phone" type="tel" autoComplete="tel" {...aria("phone")} />
-          </Field>
-        )}
+        <Field id={id("phone")} label="Phone" error={errors.phone} hint="If you'd like a call back.">
+          <input id={id("phone")} name="phone" type="tel" autoComplete="tel" {...aria("phone", true)} />
+        </Field>
       </div>
 
       <Field id={id("message")} label="Message" required error={errors.message} hint={wedding ? "Your date, guest count and anything you have in mind." : undefined}>

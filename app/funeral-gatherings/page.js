@@ -4,6 +4,7 @@ import { Phone } from "@/components/Icons";
 import { BUSINESS, IMG, DOCS } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/funeral-gatherings" },
   title: "Funeral Gatherings",
   description: "Funeral gathering menu at Classics V Banquet & Conference Center in Amherst, NY.",
 };
@@ -17,7 +18,10 @@ export default function FuneralGatherings() {
         img={IMG.exterior}
         alt="The Classics V building entrance with its columned archway"
         areas={false}
-      />
+      >
+        <a className="btn btn-primary btn-lg" href={BUSINESS.phoneHref}><Phone /> Call {BUSINESS.phone}</a>
+        <a className="btn btn-outline-light btn-lg" href={DOCS.funeral.href} target="_blank" rel="noopener">See the menu (PDF)</a>
+      </PageHero>
       <section className="section">
         <div className="container narrow">
           <h2>Funeral gatherings menu</h2>

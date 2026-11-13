@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cdn, cdnSrcSet } from "@/lib/site";
 
 // Cross-fading hero photos with a pause button (needed for anything that moves on its own).
@@ -8,6 +8,13 @@ export default function HeroSlides({ slides, interval = 6000 }) {
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [reduced, setReduced] = useState(false);
+  // Only load a slide once it is showing or up next, so phones do not download every photo up front.
+  // The second photo waits a few seconds so it doesn't slow down the first one on mobile data.
+  const loaded = useRef(new Set([0]));
+  const [warm, setWarm] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setWarm(true), 2500); return () => clearTimeout(t); }, []);
+  loaded.current.add(active);
+  if (warm) loaded.current.add((active + 1) % slides.length);
 
   useEffect(() => {
     const mq = matchMedia("(prefers-reduced-motion: reduce)");
@@ -28,14 +35,13 @@ export default function HeroSlides({ slides, interval = 6000 }) {
       {slides.map((s, i) => (
         <img
           key={s.src}
-          src={cdn(s.src, 1500)}
-          srcSet={cdnSrcSet(s.src, [750, 1000, 1500, 2500])}
+          src={loaded.current.has(i) ? cdn(s.src, 1500) : undefined}
+          srcSet={loaded.current.has(i) ? cdnSrcSet(s.src, [750, 1000, 1500, 2500]) : undefined}
           sizes="100vw"
           alt={i === active ? s.alt : ""}
           aria-hidden={i === active ? undefined : true}
           className={`hero-slide${i === active ? " is-active" : ""}`}
           style={{ objectPosition: s.position || "center" }}
-          loading={i === 0 ? "eager" : "lazy"}
           fetchPriority={i === 0 ? "high" : undefined}
           decoding="async"
           width="1500"

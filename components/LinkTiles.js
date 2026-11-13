@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cdn, cdnSrcSet } from "@/lib/site";
 import { Arrow, External } from "./Icons";
+import NearImg from "./NearImg";
 
 // Photo-backed link tiles. items: [{ title, note, href, img, external? }]
 export default function LinkTiles({ items }) {
@@ -9,7 +10,7 @@ export default function LinkTiles({ items }) {
       {items.map((t) => {
         const inner = (
           <>
-            <img src={cdn(t.img, 750)} srcSet={cdnSrcSet(t.img, [500, 750, 1000])} sizes="(min-width: 900px) 33vw, 100vw" alt="" loading="lazy" decoding="async" />
+            <NearImg src={cdn(t.img, 750)} srcSet={cdnSrcSet(t.img, [500, 750, 1000])} sizes="(min-width: 900px) 33vw, 100vw" alt="" />
             <span className="tile-shade" aria-hidden="true" />
             <span className="tile-text">
               <span className="tile-title">{t.title}</span>

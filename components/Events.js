@@ -1,6 +1,7 @@
 import { BUSINESS } from "@/lib/site";
 import EventCountdown from "./EventCountdown";
 import { Calendar, External } from "./Icons";
+import NearImg from "./NearImg";
 
 function calendarLink(e) {
   const start = e.date.replace(/-/g, "");
@@ -35,7 +36,7 @@ export default function Events({ events }) {
     <>
       <article className="event-featured">
         <a className="event-poster" href={featured.href}>
-          <img src={featured.img + "?format=750w"} alt={featured.alt} width="311" height="576" loading="lazy" />
+          <NearImg src={featured.img + "?format=750w"} alt={featured.alt} width="311" height="576" />
         </a>
         <div className="event-info">
           <div className="event-top">

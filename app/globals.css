@@ -735,3 +735,46 @@ h1, h2 { letter-spacing: -0.005em; }
   .gallery-grid li.m-fill-2 { grid-column: 1 / -1; }
 }
 @media (min-width: 1100px) { .gallery-filter { flex-wrap: wrap; justify-content: center; overflow: visible; } }
+
+/* ---------- Fixes from the 20-persona review ---------- */
+/* Tap targets: at least 44px tall on touch screens */
+.hiring-bar { padding-block: 0; }
+.hiring-bar a { min-height: 44px; }
+.hire-short { display: none; }
+.hero-dot { width: 44px; height: 44px; }
+.hero-pause { width: 44px; height: 44px; }
+.hero-dots { gap: 0; }
+.footer-links a, .footer-contact a { display: inline-flex; align-items: center; min-height: 40px; padding: 0; }
+.text-link { min-height: 44px; }
+.room-mini a, .room-jump a { display: inline-flex; align-items: center; min-height: 44px; }
+.contact-list a, .apply-ways a, .form-call { display: inline-flex; align-items: center; min-height: 44px; }
+/* Small labels a little larger, and the gold count passes contrast */
+.doc-badge { font-size: 0.75rem; }
+.doc-kicker, .job-team { font-size: 0.8rem; }
+.gallery-filter .count { color: #6f5226; font-size: 0.8rem; }
+/* Contact: getting here */
+.good-to-know { list-style: none; margin: 18px 0 8px; padding: 16px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.good-to-know li { position: relative; padding-left: 22px; color: var(--muted); }
+.good-to-know li::before { content: ""; position: absolute; left: 4px; top: 0.6em; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+/* Phones: get the buttons onto the first screen and keep the top bars short */
+@media (max-width: 560px) {
+  .hire-long { display: none; }
+  .hire-short { display: inline; }
+  .hiring-bar p { flex-wrap: nowrap; gap: 10px; }
+  .hiring-tag { white-space: nowrap; }
+  .hiring-bar a { white-space: nowrap; }
+  .hero { min-height: 0; }
+  .hero-inner { padding-top: 36px; padding-bottom: 40px; }
+  .hero-script { font-size: 1.45rem; margin-bottom: 4px; }
+  .hero h1 { font-size: 2rem; line-height: 1.12; }
+  .hero-lead { font-size: 1rem; line-height: 1.55; }
+  .hero-actions, .page-hero-actions { margin-top: 18px; }
+  .hero-actions .btn, .page-hero-actions .btn { flex: 1 1 100%; }
+  .page-hero { min-height: 0; }
+  .page-hero-inner { padding-top: 56px; padding-bottom: 32px; }
+  .page-hero h1 { font-size: 2rem; line-height: 1.12; }
+  .page-hero-intro { font-size: 1rem; line-height: 1.55; }
+}
+/* Very narrow screens: long button labels wrap instead of running off the edge */
+@media (max-width: 420px) { .btn { white-space: normal; text-align: center; line-height: 1.25; padding-block: 10px; } }
+@media (max-width: 560px) { .contact-head { padding: 40px 0 20px; } }

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cdn, cdnSrcSet } from "@/lib/site";
 import { Close, Chevron } from "./Icons";
+import NearImg from "./NearImg";
 
 const Zoom = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
@@ -15,6 +16,17 @@ function fill(count) {
   const desk = (bento ? count + 3 : count) % 3;
   const phone = (bento ? count + 1 : count) % 2;
   return [desk === 1 && "fill-3", desk === 2 && "fill-2", phone === 1 && "m-fill-2"].filter(Boolean).join(" ") || undefined;
+}
+
+// Tell the browser how wide each tile really is so large tiles get a sharp file.
+// Very wide photos (panoramas) are cropped to fit, so they need a proportionally wider file.
+function thumbSizes(count, k, ratio = 4 / 3) {
+  if (ratio > 1.6) return `(min-width: 701px) ${Math.round((33 * ratio * 3) / 4)}vw, ${Math.round((50 * ratio * 3) / 4)}vw`;
+  const cls = k === count - 1 ? fill(count) || "" : "";
+  const lead = count >= 4 && k === 0;
+  if (cls.includes("fill-3") && !cls.includes("m-fill")) return "(min-width: 1300px) 1240px, 100vw";
+  if (lead || cls.includes("fill-2")) return `(min-width: 1300px) 830px, (min-width: 701px) 66vw, ${lead || cls.includes("m-fill-2") ? "100vw" : "50vw"}`;
+  return `(min-width: 1300px) 410px, (min-width: 701px) 33vw, ${cls.includes("m-fill-2") ? "100vw" : "50vw"}`;
 }
 
 // Room filter + photo grid + an accessible lightbox built on the native <dialog> element.
@@ -98,7 +110,7 @@ export default function Gallery({ groups }) {
                     onClick={(e) => { opener.current = e.currentTarget; setIndex(i); }}
                     aria-label={`View larger: ${p.alt}`}
                   >
-                    <img src={cdn(p.src, 750)} srcSet={cdnSrcSet(p.src, [300, 500, 750, 1000])} sizes="(min-width: 1000px) 33vw, (min-width: 640px) 50vw, 100vw" alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
+                    <NearImg eager={i < 4} src={cdn(p.src, 750)} srcSet={cdnSrcSet(p.src, [500, 750, 1000, 1500, 2500])} sizes={thumbSizes(g.photos.length, k, p.w / p.h)} alt={p.alt} width={p.w} height={p.h} />
                     <span className="thumb-overlay" aria-hidden="true">
                       <span className="thumb-caption">{p.alt}</span>
                       <span className="thumb-zoom"><Zoom /></span>
@@ -122,7 +134,7 @@ export default function Gallery({ groups }) {
       >
         {current && (
           <div className="lightbox-inner">
-            <img key={current.src} src={cdn(current.src, 1500)} alt={current.alt} />
+            <img key={current.src} src={cdn(current.src, 1500)} srcSet={cdnSrcSet(current.src, [1000, 1500, 2500])} sizes="94vw" alt={current.alt} />
             <p className="lightbox-caption">
               <span><strong>{current.group}</strong> · {current.alt}</span>
               <span className="lightbox-count">{index + 1} of {all.length}</span>

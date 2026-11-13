@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { BUSINESS } from "@/lib/site";
 
+export const metadata = { title: "Page not found" };
+
 export default function NotFound() {
   return (
     <section className="section">

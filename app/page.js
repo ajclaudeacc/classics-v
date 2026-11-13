@@ -22,6 +22,7 @@ const QUICK = [
   { href: "/weddings", label: "A wedding" },
   { href: "/banquetfacilities", label: "A shower or party" },
   { href: "/meetings", label: "A meeting" },
+  { href: "/banquetfacilities#menus", label: "A prom" },
   { href: "/funeral-gatherings", label: "A funeral gathering" },
   { href: "/drop-off", label: "Catering" },
 ];
@@ -34,6 +35,8 @@ const MOSAIC = [
   { src: IMG.anthonyDaniel, alt: "Anthony Daniel Room set for a shower" },
 ];
 
+export const metadata = { alternates: { canonical: "/" } };
+
 // Rebuild daily so past events drop off on their own.
 export const revalidate = 86400;
 
@@ -42,8 +45,6 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <HeroSlides slides={HERO_SLIDES} />
-        <div className="hero-shade" aria-hidden="true" />
         <div className="container hero-inner">
           <p className="script hero-script">{BUSINESS.tagline}</p>
           <h1>Wedding venue, banquet hall &amp; conference center in Amherst, NY</h1>
@@ -59,6 +60,8 @@ export default function Home() {
             </ul>
           </nav>
         </div>
+        <HeroSlides slides={HERO_SLIDES} />
+        <div className="hero-shade" aria-hidden="true" />
       </section>
 
       <Facts />

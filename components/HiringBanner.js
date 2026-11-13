@@ -22,8 +22,11 @@ export default function HiringBanner() {
     <div className="hiring-bar" role="region" aria-label="We're hiring">
       <p>
         <span className="hiring-tag">We&rsquo;re hiring</span>
-        <span>Servers and dishwashers wanted.</span>
-        <Link href="/careers">How to apply <Arrow /></Link>
+        <span className="hire-long">Servers and dishwashers wanted.</span>
+        <Link href="/careers">
+          <span className="hire-long">How to apply</span>
+          <span className="hire-short">Servers &amp; dishwashers</span> <Arrow />
+        </Link>
       </p>
       <button type="button" className="hiring-close" onClick={close} aria-label="Close the hiring message"><Close /></button>
     </div>

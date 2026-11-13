@@ -7,6 +7,7 @@ import Link from "next/link";
 import { TraditionalPlan, TheaterPlan, TradeShowPlan } from "@/components/LayoutPlans";
 
 export const metadata = {
+  alternates: { canonical: "/meetings" },
   title: "Meeting & Conference Venue",
   description: "Meeting, seminar and trade show space in Amherst, NY with great food, audio visual equipment, flexible layouts and breakout rooms.",
 };

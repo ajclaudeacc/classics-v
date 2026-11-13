@@ -1,4 +1,5 @@
 import { Download } from "./Icons";
+import NearImg from "./NearImg";
 
 const pageCount = (n) => `${n} ${n === 1 ? "page" : "pages"}`;
 
@@ -9,7 +10,7 @@ export default function PdfCards({ docs, size = "md" }) {
     const d = docs[0];
     return (
       <a className="doc-mini" href={d.href} target="_blank" rel="noopener">
-        <img src={d.cover} alt="" width="600" height="776" loading="lazy" />
+        <NearImg src={d.cover} alt="" width="600" height="776" />
         <span><span className="doc-title">{d.label || d.title}</span><span className="doc-inside">PDF · {pageCount(d.pages)}</span></span>
         <span className="sr-only"> (opens in a new tab)</span>
       </a>
@@ -19,7 +20,7 @@ export default function PdfCards({ docs, size = "md" }) {
     const d = docs[0];
     return (
       <a className="doc-feature" href={d.href} target="_blank" rel="noopener">
-        <span className="doc-cover"><img src={d.cover} alt="" width="600" height="776" loading="lazy" /></span>
+        <span className="doc-cover"><NearImg src={d.cover} alt="" width="600" height="776" /></span>
         <span className="doc-feature-text">
           {d.kicker !== false && <span className="doc-kicker">{d.kicker || "Menu & pricing"}</span>}
           <span className="doc-title">{d.label || d.title}</span>
@@ -36,7 +37,7 @@ export default function PdfCards({ docs, size = "md" }) {
         <li key={d.href + (d.label || "")}>
           <a className="doc-card" href={d.href} target="_blank" rel="noopener">
             <span className="doc-cover">
-              <img src={d.cover} alt="" width="600" height="776" loading="lazy" />
+              <NearImg src={d.cover} alt="" width="600" height="776" />
               <span className="doc-badge">PDF</span>
             </span>
             <span className="doc-title">{d.label || d.title}</span>

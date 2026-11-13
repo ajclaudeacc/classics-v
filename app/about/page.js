@@ -7,6 +7,7 @@ import { Users } from "@/components/Icons";
 import { BUSINESS, IMG, ROOMS, VIDEOS } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/about" },
   title: "About Our Banquet Hall & Rooms",
   description: "Our main ballroom hosts up to 500 guests and was remodeled in 2020. The private Terrace Room seats up to 140 with an outdoor patio.",
 };

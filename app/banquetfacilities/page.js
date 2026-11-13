@@ -9,6 +9,7 @@ import { Check, Users } from "@/components/Icons";
 import { IMG, PDF, LEGACY_PAGES, ROOMS, DOCS } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/banquetfacilities" },
   title: "Banquet Hall & Shower Venue",
   description: "Four banquet rooms for 35 to 500 guests in Amherst, NY. Breakfast, lunch and dinner buffets, sit-down meals, stations and cocktail parties.",
 };

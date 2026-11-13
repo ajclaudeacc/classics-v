@@ -8,6 +8,7 @@ import { GALLERY } from "@/lib/gallery";
 import { IMG, VIDEOS } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/classicsfivephotos" },
   title: "Photos & Virtual Tours",
   description: "Photos of the remodeled main ballroom, the Christina Maria, Anthony Daniel and Adam David rooms, and the Terrace Room.",
 };

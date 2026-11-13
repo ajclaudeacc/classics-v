@@ -9,6 +9,7 @@ import { Check, Phone } from "@/components/Icons";
 import { BUSINESS, IMG, DOCS, PDF, LEGACY_PAGES, VIDEOS } from "@/lib/site";
 
 export const metadata = {
+  alternates: { canonical: "/weddings" },
   title: "Wedding Venue in Amherst, NY",
   description: "Customizable wedding packages with no room fee and no cake cutting fee, personal planning and day-of coordination. Family owned since 1985.",
 };

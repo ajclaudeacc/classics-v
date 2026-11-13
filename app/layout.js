@@ -13,7 +13,7 @@ import HiringBanner from "@/components/HiringBanner";
 // Hides the hiring bar before first paint for visitors who closed it (key matches components/HiringBanner.js).
 const hiringScript = `try{if(localStorage.getItem("cv-hiring-dismissed"))document.documentElement.classList.add("hire-off")}catch(e){}`;
 import Reveal from "@/components/Reveal";
-import { BUSINESS } from "@/lib/site";
+import { BUSINESS, IMG } from "@/lib/site";
 
 const preview = process.env.NEXT_PUBLIC_PREVIEW_MODE !== "false";
 
@@ -26,6 +26,13 @@ export const metadata = {
   description:
     "Family-owned wedding venue, banquet hall and conference center at 2425 Niagara Falls Blvd, Amherst, NY. Four banquet rooms for 35 to 500 guests. Call (716) 691-6000.",
   // Keep the preview out of search results so it never competes with the live site.
+  // Preview image when a link is shared by text or on social media.
+  openGraph: {
+    type: "website",
+    siteName: "Classics V Banquet & Conference Center",
+    images: [{ url: IMG.mainHallBlue + "?format=1500w", width: 1500, height: 1125, alt: "The main ballroom at Classics V set for a reception" }],
+  },
+  twitter: { card: "summary_large_image" },
   robots: preview ? { index: false, follow: false } : undefined,
 };
 
