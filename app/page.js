@@ -6,6 +6,22 @@ import CallToAction from "@/components/CallToAction";
 import { Phone, Arrow, Users } from "@/components/Icons";
 import { BUSINESS, IMG, ROOMS, SERVICES, PDF, VIDEOS, upcomingEvents } from "@/lib/site";
 
+const QUICK = [
+  { href: "/weddings", label: "A wedding" },
+  { href: "/banquetfacilities", label: "A shower or party" },
+  { href: "/meetings", label: "A meeting" },
+  { href: "/funeral-gatherings", label: "A funeral gathering" },
+  { href: "/drop-off", label: "Catering" },
+];
+
+const MOSAIC = [
+  { src: IMG.redWedding, alt: "Wedding reception with red uplighting in the main hall" },
+  { src: IMG.terrace, alt: "Terrace Room set for a wedding" },
+  { src: IMG.holiday, alt: "Holiday party with red and green uplighting" },
+  { src: IMG.christinaMaria, alt: "Christina Maria Room with candlelit head tables" },
+  { src: IMG.anthonyDaniel, alt: "Anthony Daniel Room set for a shower" },
+];
+
 // Rebuild daily so past events drop off on their own.
 export const revalidate = 86400;
 
@@ -23,6 +39,12 @@ export default function Home() {
             <Link className="btn btn-primary btn-lg" href="/contact">Book a private tour</Link>
             <a className="btn btn-outline-light btn-lg" href={BUSINESS.phoneHref}><Phone /> {BUSINESS.phone}</a>
           </div>
+          <nav className="hero-quick" aria-label="What are you planning?">
+            <p>What are you planning?</p>
+            <ul>
+              {QUICK.map((q) => <li key={q.href}><Link href={q.href}>{q.label}</Link></li>)}
+            </ul>
+          </nav>
         </div>
       </section>
 
@@ -31,7 +53,6 @@ export default function Home() {
           <li><strong>4</strong><span>banquet rooms</span></li>
           <li><strong>35 to 500</strong><span>guests</span></li>
           <li><strong>Since 1985</strong><span>family owned</span></li>
-          <li><strong>Remodeled</strong><span>main hall, 2020</span></li>
         </ul>
       </section>
 
@@ -91,10 +112,13 @@ export default function Home() {
           <ul className="card-grid rooms">
             {ROOMS.map((r) => (
               <li key={r.id} className="card card-link">
-                <Photo src={r.img} alt={r.alt} className="card-img" sizes="(min-width: 1000px) 20vw, (min-width: 640px) 45vw, 100vw" widths={[500, 750, 1000]} />
+                <div className="card-media">
+                  <Photo src={r.img} alt={r.alt} className="card-img" sizes="(min-width: 1000px) 20vw, (min-width: 640px) 45vw, 100vw" widths={[500, 750, 1000]} />
+                  <span className="card-badge"><Users /> {r.capacity.replace(" guests", "")}</span>
+                </div>
                 <div className="card-body">
                   <h3><Link href={`/about#${r.id}`} className="stretched">{r.name}</Link></h3>
-                  <p className="capacity"><Users /> {r.capacity}</p>
+                  <p>{r.sub || "Room details"}</p>
                 </div>
               </li>
             ))}
@@ -102,8 +126,29 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section section-tint" aria-labelledby="inside-title">
+        <div className="container">
+          <div className="section-head section-head-row">
+            <div>
+              <h2 id="inside-title">Take a look inside</h2>
+              <p>Real events in our ballrooms, from intimate showers to receptions for 300.</p>
+            </div>
+            <Link className="btn btn-secondary" href="/classicsfivephotos">See all photos</Link>
+          </div>
+          <ul className="mosaic">
+            {MOSAIC.map((m, i) => (
+              <li key={m.src} className={`mosaic-${i + 1}`}>
+                <Link href="/classicsfivephotos" aria-label={`${m.alt}. See all photos`}>
+                  <Photo src={m.src} alt="" className="mosaic-img" sizes={i === 0 ? "(min-width: 900px) 50vw, 100vw" : "(min-width: 900px) 25vw, 50vw"} widths={[500, 750, 1000, 1500]} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {events.length > 0 && (
-        <section className="section section-tint" aria-labelledby="events-title">
+        <section className="section" aria-labelledby="events-title">
           <div className="container">
             <div className="section-head">
               <h2 id="events-title">Upcoming public events</h2>
@@ -125,6 +170,35 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      <section className="section section-tint" aria-labelledby="steps-title">
+        <div className="container">
+          <div className="section-head">
+            <h2 id="steps-title">Planning with us is simple</h2>
+            <p>Three steps from first call to the big day.</p>
+          </div>
+          <ol className="steps">
+            <li>
+              <span className="step-num" aria-hidden="true">1</span>
+              <h3>Call or send a message</h3>
+              <p>Tell our office about your date and guest count. We&rsquo;ll check availability.</p>
+            </li>
+            <li>
+              <span className="step-num" aria-hidden="true">2</span>
+              <h3>Take a private tour</h3>
+              <p>See the rooms, ask questions and hear ideas for your event.</p>
+            </li>
+            <li>
+              <span className="step-num" aria-hidden="true">3</span>
+              <h3>Plan the details together</h3>
+              <p>Choose your menu and setup. We work with you every step of the way.</p>
+            </li>
+          </ol>
+          <p className="steps-reviews">
+            Curious what couples say? <a href={BUSINESS.weddingWire}>Read our reviews on WeddingWire</a>
+          </p>
+        </div>
+      </section>
 
       <section className="section" aria-labelledby="menus-title">
         <div className="container split split-top">
