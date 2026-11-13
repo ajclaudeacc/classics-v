@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PreviewBanner from "@/components/PreviewBanner";
+import Reveal from "@/components/Reveal";
 import { BUSINESS } from "@/lib/site";
 
 const preview = process.env.NEXT_PUBLIC_PREVIEW_MODE !== "false";
@@ -51,6 +52,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
+        <Reveal />
         {!preview && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />}
       </body>
     </html>

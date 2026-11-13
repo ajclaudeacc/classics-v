@@ -5,6 +5,7 @@ import DownloadList from "@/components/DownloadList";
 import CallToAction from "@/components/CallToAction";
 import HeroSlides from "@/components/HeroSlides";
 import Events from "@/components/Events";
+import Facts from "@/components/Facts";
 import { Phone, Arrow, Users } from "@/components/Icons";
 import { BUSINESS, IMG, ROOMS, SERVICES, PDF, VIDEOS, upcomingEvents } from "@/lib/site";
 
@@ -58,13 +59,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="facts" aria-label="At a glance">
-        <ul className="container facts-list">
-          <li><strong>4</strong><span>banquet rooms</span></li>
-          <li><strong>35 to 500</strong><span>guests</span></li>
-          <li><strong>Since 1985</strong><span>family owned</span></li>
-        </ul>
-      </section>
+      <Facts />
 
       <section className="section">
         <div className="container split">

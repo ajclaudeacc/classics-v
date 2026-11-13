@@ -11,6 +11,9 @@
   --tint: #f3f5f8;
   --line: #dde3ea;
   --focus: #1d4ed8;
+  --gold: #c9a96e;
+  --gold-deep: #8a6834;
+  --gold-soft: #f6efe3;
   --error: #b42318;
   --ok: #1d6b45;
 
@@ -33,7 +36,7 @@ a { color: var(--navy); text-underline-offset: 0.2em; }
 a:hover { color: var(--navy-hover); }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
 main:focus { outline: none; }
-::selection { background: #dbe4f2; color: var(--ink); }
+::selection { background: var(--gold-soft); color: var(--ink); }
 
 h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); line-height: 1.15; margin: 0 0 0.5em; text-wrap: balance; }
 h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); }
@@ -498,3 +501,39 @@ input:not([type="radio"]):focus-visible, textarea:focus-visible { outline: none;
 .layout-best { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink) !important; }
 .layout-best span { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
 @media (max-width: 900px) { .layouts { grid-template-columns: 1fr; } }
+
+/* ---------- Gold accents (timeless & elegant) ---------- */
+.facts strong { color: var(--gold); }
+.main-nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--gold); }
+.mobile-nav a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--gold); padding-left: 12px; }
+.checklist svg { background: var(--gold-deep); }
+.capacity svg, .room-mini svg { color: var(--gold-deep); }
+.dl-icon { background: var(--gold-soft); color: var(--gold-deep); }
+.downloads a:hover { border-color: var(--gold); }
+.card-badge { color: #f3e6cc; }
+.card-badge svg { color: var(--gold); }
+.step-num { background: var(--ink); color: var(--gold); box-shadow: 0 0 0 4px var(--gold-soft); }
+.date-month, .date-weekday { color: var(--gold); }
+.event-countdown { background: var(--gold-soft); color: var(--gold-deep); }
+.layout-best span { color: var(--gold-deep); }
+.layout-plan .seat { fill: var(--gold); }
+.layout-plan .booth { fill: rgba(201, 169, 110, 0.28); stroke: var(--gold); }
+.layout-card:hover .seat { fill: #e6d2a8; }
+.layout-card:hover .booth { fill: rgba(201, 169, 110, 0.5); }
+.hero-quick a:hover, .btn-outline-light:hover { border-color: var(--gold); }
+.hero-dot[aria-pressed="true"]::before { background: var(--gold); }
+.footer-heading { color: var(--gold); }
+.footer-tagline { color: #e8d9bb; }
+.footer-contact svg { color: var(--gold); }
+.cta-band { position: relative; }
+.cta-band h2::after { content: none; }
+.contact-list svg { color: var(--gold-deep); }
+.done-icon { background: var(--gold-soft); color: var(--gold-deep); }
+.text-link { color: var(--navy); }
+.text-link svg { color: var(--gold-deep); }
+.video-play { color: var(--gold-deep); }
+
+/* ---------- Scroll reveal (moderate motion) ---------- */
+.reveal { opacity: 0; transform: translateY(18px); }
+.reveal.is-visible { opacity: 1; transform: none; transition: opacity 700ms ease var(--reveal-delay, 0ms), transform 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
