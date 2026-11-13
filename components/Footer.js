@@ -32,6 +32,7 @@ export default function Footer() {
           <ul className="footer-links">
             {NAV.map((n) => <li key={n.href}><Link href={n.href}>{n.label}</Link></li>)}
             <li><Link href="/contact">Contact</Link></li>
+            <li><Link href="/careers">Careers: we&rsquo;re hiring</Link></li>
           </ul>
         </nav>
 

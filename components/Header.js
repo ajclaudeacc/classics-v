@@ -70,6 +70,7 @@ export default function Header() {
               </li>
             ))}
             <li><Link href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined}>Contact</Link></li>
+            <li><Link href="/careers" aria-current={isCurrent("/careers") ? "page" : undefined}>Careers</Link></li>
           </ul>
           <a className="btn btn-primary btn-block" href={BUSINESS.phoneHref}><Phone /> Call {BUSINESS.phone}</a>
         </nav>

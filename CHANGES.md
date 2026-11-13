@@ -257,3 +257,9 @@ appear on the current site; everything else is the original content, sometimes s
   - The covers are rendered from the first page of each PDF and saved in `public/menus`.
   - The covers confirm that the wedding packages document is the 2025 edition and the catering menu is the 2024 edition.
 - **Removed from the homepage:** the "Remodeled, main hall 2020" fact (the remodel is still described on Our Rooms).
+
+### Careers page (new)
+- New page at `/careers`: "Now hiring servers and dishwashers", with a card for each job (servers, front of house; dishwashers, back of house) and three ways to apply: call (716) 691-6000, email info@classicsv.com, or a short online form.
+- Online application form: job, name, email, phone, availability (weekdays/weeknights/weekends) and optional experience. It uses the same switch as the inquiry forms, so it saves nothing until `INQUIRY_FORM_LIVE=true`. When it's on, applications go to a new `job_applications` table in Supabase.
+- Links added: "Careers: we're hiring" in the footer, "Careers" in the mobile menu, and a navy "Now hiring" strip on the homepage above the closing call to action.
+- New wording written by us (VERIFY): the page intro, both job descriptions and the form text. No pay, hours or requirements are listed because none were provided.

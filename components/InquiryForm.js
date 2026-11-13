@@ -2,19 +2,7 @@
 import { useId, useState } from "react";
 import { BUSINESS } from "@/lib/site";
 import { Check, Phone } from "./Icons";
-
-function Field({ id, label, required, error, children, hint }) {
-  return (
-    <div className={`field${error ? " has-error" : ""}`}>
-      <label htmlFor={id}>
-        {label} {required ? <span className="req">(required)</span> : <span className="opt">(optional)</span>}
-      </label>
-      {children}
-      {hint && !error && <p className="hint" id={`${id}-hint`}>{hint}</p>}
-      {error && <p className="error" id={`${id}-error`}>{error}</p>}
-    </div>
-  );
-}
+import Field from "./FormField";
 
 export default function InquiryForm({ variant = "general", title, intro }) {
   const uid = useId();

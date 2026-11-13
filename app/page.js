@@ -198,7 +198,12 @@ export default function Home() {
           </p>
         </div>
       </section>
-
+      <aside className="hiring-strip" aria-label="Jobs">
+        <div className="container">
+          <p><strong>Now hiring:</strong> servers and dishwashers</p>
+          <Link href="/careers">How to apply <Arrow /></Link>
+        </div>
+      </aside>
 
       <CallToAction title="Let Classics V host your event" text="We're still offering private tours. Call to check availability or to schedule a visit." />
     </>
