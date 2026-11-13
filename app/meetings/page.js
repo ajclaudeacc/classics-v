@@ -4,6 +4,7 @@ import CallToAction from "@/components/CallToAction";
 import { Check } from "@/components/Icons";
 import { BUSINESS, IMG, PDF } from "@/lib/site";
 import Link from "next/link";
+import { TraditionalPlan, TheaterPlan, TradeShowPlan } from "@/components/LayoutPlans";
 
 export const metadata = {
   title: "Meeting & Conference Venue",
@@ -11,9 +12,9 @@ export const metadata = {
 };
 
 const LAYOUTS = [
-  { title: "Traditional business meeting", text: "Whether it's an end-of-year conference with your whole staff or a mid-year meeting on progress and goals, we'll set up the room in a way that works for you." },
-  { title: "Theater", text: "Playing a video or performance for your team? We'll create the layout you need and hook up any necessary electronics." },
-  { title: "Trade show", text: "We'll provide the space and help you create a layout that flows." },
+  { Plan: TraditionalPlan, best: "Conferences, staff and progress meetings", title: "Traditional business meeting", text: "Whether it's an end-of-year conference with your whole staff or a mid-year meeting on progress and goals, we'll set up the room in a way that works for you." },
+  { Plan: TheaterPlan, best: "Videos, presentations and performances", title: "Theater", text: "Playing a video or performance for your team? We'll create the layout you need and hook up any necessary electronics." },
+  { Plan: TradeShowPlan, best: "Exhibitors, vendors and booths", title: "Trade show", text: "We'll provide the space and help you create a layout that flows." },
 ];
 
 const INCLUDED = ["Breakfast & brunch buffets", "Lunch buffets", "Continental breakfast", "Seminar packages", "Audio & visual rentals"];
@@ -32,23 +33,31 @@ export default function Meetings() {
       </PageHero>
 
       <section className="section">
-        <div className="container split split-top">
-          <div className="prose">
-            <h2>Your next business forum, handled</h2>
-            <p>
-              We offer traditional, classroom, theater, trade show and many more styles of setup. Whatever your needs, we&rsquo;ll
-              work with you every step of the way. In most cases we can also provide breakout rooms and flexible setup times.
-            </p>
-            <p>
+        <div className="container">
+          <div className="split split-top intro-split">
+            <div className="prose">
+              <h2>Your next business forum, handled</h2>
+              <p>
+                We offer traditional, classroom, theater, trade show and many more styles of setup. Whatever your needs, we&rsquo;ll
+                work with you every step of the way. In most cases we can also provide breakout rooms and flexible setup times.
+              </p>
+            </div>
+            <p className="prose aside-text">
               Our Amherst location means your attendees&rsquo; stay doesn&rsquo;t have to end at the meeting: the surrounding area
               offers a great variety of activities, architecture and arts.
             </p>
           </div>
-          <ul className="card-stack">
-            {LAYOUTS.map((l) => (
-              <li key={l.title} className="info-card">
-                <h3>{l.title}</h3>
-                <p>{l.text}</p>
+
+          <h3 className="layouts-title">Choose a layout</h3>
+          <ul className="layouts">
+            {LAYOUTS.map(({ Plan, title, text, best }) => (
+              <li key={title} className="layout-card">
+                <div className="layout-plan"><Plan /></div>
+                <div className="layout-body">
+                  <h4>{title}</h4>
+                  <p>{text}</p>
+                  <p className="layout-best"><span>Best for</span> {best}</p>
+                </div>
               </li>
             ))}
           </ul>

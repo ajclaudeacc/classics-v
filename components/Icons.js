@@ -11,3 +11,4 @@ export const Check = (p) => (<svg {...base} {...p}><path d="M5 12.5l4.2 4.2L19 7
 export const Play = (p) => (<svg {...base} {...p} fill="currentColor" stroke="none"><path d="M8 5.5v13l11-6.5z" /></svg>);
 export const Users = (p) => (<svg {...base} {...p}><circle cx="9" cy="8" r="3.2" /><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" /><path d="M16 5.2a3 3 0 0 1 0 5.6M18 13.8c2 .7 3 2.6 3 5.2" /></svg>);
 export const Chevron = (p) => (<svg {...base} {...p}><path d="M9 6l6 6-6 6" /></svg>);
+export const Calendar = (p) => (<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" {...p}><rect x="3.5" y="5" width="17" height="15" rx="2.5" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg>);

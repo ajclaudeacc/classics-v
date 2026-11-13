@@ -3,8 +3,18 @@ import Photo from "@/components/Photo";
 import Video from "@/components/Video";
 import DownloadList from "@/components/DownloadList";
 import CallToAction from "@/components/CallToAction";
+import HeroSlides from "@/components/HeroSlides";
+import Events from "@/components/Events";
 import { Phone, Arrow, Users } from "@/components/Icons";
 import { BUSINESS, IMG, ROOMS, SERVICES, PDF, VIDEOS, upcomingEvents } from "@/lib/site";
+
+const HERO_SLIDES = [
+  { src: IMG.mainHallBlue, label: "Main ballroom", alt: "The remodeled main ballroom set for a reception, with white chair covers, navy sashes and uplighting" },
+  { src: IMG.exteriorColor, label: "Outside view", alt: "Outside view of Classics V, with the Terrace Room entrance and green awning" },
+  { src: IMG.redWedding, label: "Wedding reception", alt: "Wedding reception in the main hall with red uplighting and a long head table" },
+  { src: IMG.terrace, label: "Terrace Room", alt: "The Terrace Room set for a wedding with burgundy linens and white chair covers" },
+  { src: IMG.christinaMaria, label: "Christina Maria Room", alt: "Christina Maria Room with candlelit head tables" },
+];
 
 const QUICK = [
   { href: "/weddings", label: "A wedding" },
@@ -30,7 +40,7 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <Photo src={IMG.mainHallBlue} alt="The remodeled main ballroom at Classics V set for a reception, with white chair covers, navy sashes and uplighting" className="hero-img" priority sizes="100vw" widths={[750, 1000, 1500, 2500]} />
+        <HeroSlides slides={HERO_SLIDES} />
         <div className="hero-shade" aria-hidden="true" />
         <div className="container hero-inner">
           <h1>Wedding venue, banquet hall &amp; conference center in Amherst, NY</h1>
@@ -148,25 +158,13 @@ export default function Home() {
       </section>
 
       {events.length > 0 && (
-        <section className="section" aria-labelledby="events-title">
+        <section id="events" className="section events-section" aria-labelledby="events-title">
           <div className="container">
             <div className="section-head">
               <h2 id="events-title">Upcoming public events</h2>
-              <p>Tickets are sold through each event&rsquo;s ticketing page.</p>
+              <p>Dances, live music and seasonal parties. Tickets are sold through each event&rsquo;s ticketing page.</p>
             </div>
-            <ul className="events">
-              {events.map((e) => (
-                <li key={e.href} className="event">
-                  <img src={e.img + "?format=500w"} alt={e.alt} width="311" height="576" loading="lazy" className="event-img" />
-                  <div className="event-body">
-                    <p className="event-date"><time dateTime={e.date}>{e.when}</time></p>
-                    <h3>{e.title}</h3>
-                    {e.note && <p>{e.note}</p>}
-                    <a className="btn btn-primary" href={e.href}>Get tickets<span className="sr-only"> for {e.title}</span></a>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <Events events={events} />
           </div>
         </section>
       )}
