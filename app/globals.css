@@ -17,7 +17,7 @@
   --error: #b42318;
   --ok: #1d6b45;
 
-  --serif: "Marcellus", Georgia, "Times New Roman", serif;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --sans: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --radius: 10px;
@@ -537,3 +537,8 @@ input:not([type="radio"]):focus-visible, textarea:focus-visible { outline: none;
 .reveal { opacity: 0; transform: translateY(18px); }
 .reveal.is-visible { opacity: 1; transform: none; transition: opacity 700ms ease var(--reveal-delay, 0ms), transform 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms); }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* Playfair Display: a touch more weight on the big headings */
+.hero h1, .page-hero h1, .contact-head h1 { font-weight: 500; }
+h1, h2 { letter-spacing: -0.005em; }
+.facts strong, .date-day, .step-num, .contact-big, .info-card .price { font-variant-numeric: lining-nums; }
