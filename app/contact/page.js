@@ -1,6 +1,7 @@
+import PdfCards from "@/components/PdfCards";
 import InquiryForm from "@/components/InquiryForm";
 import { Phone, Mail, Pin } from "@/components/Icons";
-import { BUSINESS, PDF } from "@/lib/site";
+import { BUSINESS, DOCS } from "@/lib/site";
 
 export const metadata = {
   title: "Contact Us & Schedule a Tour",
@@ -59,7 +60,7 @@ export default function Contact() {
           </div>
           <div>
             <InquiryForm />
-            <p className="small form-terms"><a href={PDF.terms}>View the terms &amp; conditions (PDF)</a></p>
+            <div className="form-terms"><PdfCards size="mini" docs={[DOCS.terms]} /></div>
           </div>
         </div>
       </section>

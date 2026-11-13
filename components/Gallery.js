@@ -3,12 +3,30 @@ import { useEffect, useRef, useState } from "react";
 import { cdn, cdnSrcSet } from "@/lib/site";
 import { Close, Chevron } from "./Icons";
 
-// Photo grid with an accessible lightbox built on the native <dialog> element.
+const Zoom = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+    <circle cx="10.5" cy="10.5" r="6" /><path d="M15 15l5 5M10.5 8v5M8 10.5h5" />
+  </svg>
+);
+
+// Widen the last photo so no row ends with an empty gap (3 columns on desktop, 2 on phones).
+function fill(count) {
+  const bento = count >= 4;
+  const desk = (bento ? count + 3 : count) % 3;
+  const phone = (bento ? count + 1 : count) % 2;
+  return [desk === 1 && "fill-3", desk === 2 && "fill-2", phone === 1 && "m-fill-2"].filter(Boolean).join(" ") || undefined;
+}
+
+// Room filter + photo grid + an accessible lightbox built on the native <dialog> element.
 export default function Gallery({ groups }) {
-  const all = groups.flatMap((g) => g.photos.map((p) => ({ ...p, group: g.title })));
+  const [filter, setFilter] = useState("all");
+  const shown = filter === "all" ? groups : groups.filter((g) => g.id === filter);
+  const all = shown.flatMap((g) => g.photos.map((p) => ({ ...p, group: g.title })));
+  const total = groups.reduce((n, g) => n + g.photos.length, 0);
   const [index, setIndex] = useState(-1);
   const dialog = useRef(null);
   const opener = useRef(null);
+  const touch = useRef(null);
 
   useEffect(() => {
     const d = dialog.current;
@@ -31,30 +49,60 @@ export default function Gallery({ groups }) {
     if (e.key === "ArrowRight") step(1);
     if (e.key === "ArrowLeft") step(-1);
   };
+  const onTouchEnd = (e) => {
+    if (touch.current == null) return;
+    const dx = e.changedTouches[0].clientX - touch.current;
+    if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+    touch.current = null;
+  };
+
+  const choose = (id) => {
+    setFilter(id);
+    document.getElementById("gallery-top")?.scrollIntoView({ block: "start" });
+  };
 
   let n = -1;
   const current = all[index];
   return (
     <>
-      {groups.map((g) => (
+      <div id="gallery-top" className="gallery-filter" role="group" aria-label="Show photos of">
+        <button type="button" aria-pressed={filter === "all"} onClick={() => choose("all")}>
+          All rooms <span className="count">{total}</span>
+        </button>
+        {groups.map((g) => (
+          <button key={g.id} type="button" aria-pressed={filter === g.id} onClick={() => choose(g.id)}>
+            {g.title} <span className="count">{g.photos.length}</span>
+          </button>
+        ))}
+      </div>
+
+      <p className="sr-only" aria-live="polite">
+        {filter === "all" ? `Showing all ${total} photos` : `Showing ${all.length} photos of ${shown[0].title}`}
+      </p>
+
+      {shown.map((g) => (
         <section key={g.id} className="gallery-group" aria-labelledby={`g-${g.id}`}>
           <div className="gallery-head">
-            <h2 id={`g-${g.id}`}>{g.title}</h2>
+            <h2 id={`g-${g.id}`}>{g.title} <span className="gallery-count">{g.photos.length} photos</span></h2>
             {g.note && <p>{g.note}</p>}
           </div>
-          <ul className="gallery-grid">
-            {g.photos.map((p) => {
+          <ul className={`gallery-grid${g.photos.length >= 4 ? " is-bento" : ""}`}>
+            {g.photos.map((p, k) => {
               n += 1;
               const i = n;
               return (
-                <li key={p.src}>
+                <li key={p.src} className={k === g.photos.length - 1 ? fill(g.photos.length) : undefined}>
                   <button
                     type="button"
                     className="gallery-thumb"
                     onClick={(e) => { opener.current = e.currentTarget; setIndex(i); }}
                     aria-label={`View larger: ${p.alt}`}
                   >
-                    <img src={cdn(p.src, 500)} srcSet={cdnSrcSet(p.src, [300, 500, 750])} sizes="(min-width: 1000px) 25vw, (min-width: 640px) 33vw, 50vw" alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
+                    <img src={cdn(p.src, 750)} srcSet={cdnSrcSet(p.src, [300, 500, 750, 1000])} sizes="(min-width: 1000px) 33vw, (min-width: 640px) 50vw, 100vw" alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
+                    <span className="thumb-overlay" aria-hidden="true">
+                      <span className="thumb-caption">{p.alt}</span>
+                      <span className="thumb-zoom"><Zoom /></span>
+                    </span>
                   </button>
                 </li>
               );
@@ -63,12 +111,20 @@ export default function Gallery({ groups }) {
         </section>
       ))}
 
-      <dialog ref={dialog} className="lightbox" aria-label="Photo viewer" onKeyDown={onKey} onClick={(e) => e.target === dialog.current && dialog.current.close()}>
+      <dialog
+        ref={dialog}
+        className="lightbox"
+        aria-label="Photo viewer"
+        onKeyDown={onKey}
+        onClick={(e) => e.target === dialog.current && dialog.current.close()}
+        onTouchStart={(e) => { touch.current = e.touches[0].clientX; }}
+        onTouchEnd={onTouchEnd}
+      >
         {current && (
           <div className="lightbox-inner">
-            <img src={cdn(current.src, 1500)} alt={current.alt} />
+            <img key={current.src} src={cdn(current.src, 1500)} alt={current.alt} />
             <p className="lightbox-caption">
-              <span>{current.alt}</span>
+              <span><strong>{current.group}</strong> · {current.alt}</span>
               <span className="lightbox-count">{index + 1} of {all.length}</span>
             </p>
             <button type="button" className="lb-btn lb-prev" onClick={() => step(-1)} aria-label="Previous photo"><Chevron /></button>

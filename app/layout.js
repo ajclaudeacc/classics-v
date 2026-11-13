@@ -8,6 +8,10 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PreviewBanner from "@/components/PreviewBanner";
+import HiringBanner from "@/components/HiringBanner";
+
+// Hides the hiring bar before first paint for visitors who closed it (key matches components/HiringBanner.js).
+const hiringScript = `try{if(localStorage.getItem("cv-hiring-dismissed"))document.documentElement.classList.add("hire-off")}catch(e){}`;
 import Reveal from "@/components/Reveal";
 import { BUSINESS } from "@/lib/site";
 
@@ -47,10 +51,14 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: hiringScript }} />
+      </head>
       <body>
         <a className="skip-link" href="#main">Skip to main content</a>
         <PreviewBanner />
+        <HiringBanner />
         <Header />
         <main id="main" tabIndex={-1}>{children}</main>
         <Footer />

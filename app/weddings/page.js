@@ -1,10 +1,12 @@
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import Video from "@/components/Video";
-import DownloadList from "@/components/DownloadList";
+import PdfCards from "@/components/PdfCards";
+import LinkTiles from "@/components/LinkTiles";
+import Ornament from "@/components/Ornament";
 import InquiryForm from "@/components/InquiryForm";
 import { Check, Phone } from "@/components/Icons";
-import { BUSINESS, IMG, PDF, LEGACY_PAGES, VIDEOS } from "@/lib/site";
+import { BUSINESS, IMG, DOCS, PDF, LEGACY_PAGES, VIDEOS } from "@/lib/site";
 
 export const metadata = {
   title: "Wedding Venue in Amherst, NY",
@@ -49,31 +51,27 @@ export default function Weddings() {
         </div>
       </section>
 
-      <section className="section section-tint" aria-labelledby="packages-title">
+      <section className="section section-tint docs-section" aria-labelledby="packages-title">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head section-head-center">
+            <p className="script">Everything you need, in one place</p>
             <h2 id="packages-title">Wedding packages</h2>
-            <p>Ask about our Friday, Sunday and off-season discounts.</p>
+            <Ornament />
+            <p>Select a cover to open the full package with pricing. Ask about our Friday, Sunday and off-season discounts.</p>
           </div>
-          <DownloadList
-            columns={2}
-            items={[
-              { label: "2026 Wedding Packages", href: PDF.weddingPackages },
-              { label: "Wedding Dinner Stations Packages", href: PDF.weddingStations },
-              { label: "Brunch Reception Package", href: PDF.brunchReception },
-              { label: "Enhancements, Desserts & Ceremonies", href: PDF.weddingInfo },
-              { label: "Wedding Handbook & Frequently Asked Questions", href: PDF.weddingHandbook },
-            ]}
-          />
-          <h3 className="subhead">More for your wedding weekend</h3>
-          <DownloadList
-            columns={2}
-            items={[
-              { label: "Bridal showers", href: PDF.lunchHome, note: "Breakfast & lunch banquet menu (PDF)" },
-              { label: "Rehearsal dinner packages", href: PDF.dinner, note: "Dinner banquet menu (PDF)" },
-              { label: "Morning-after reception breakfast", href: PDF.lunch, note: "Breakfast & lunch banquet menu (PDF)" },
-            ]}
-          />
+          <PdfCards docs={[DOCS.weddingPackages, DOCS.weddingStations, DOCS.brunchReception, DOCS.weddingInfo, DOCS.weddingHandbook]} />
+
+          <div className="weekend">
+            <h3 className="weekend-title">More for your wedding weekend</h3>
+            <PdfCards
+              size="sm"
+              docs={[
+                { ...DOCS.lunch, href: PDF.lunchHome, label: "Bridal showers", note: "From our breakfast & lunch banquet menu" },
+                { ...DOCS.dinner, label: "Rehearsal dinners", note: "From our dinner banquet menu" },
+                { ...DOCS.lunch, label: "Morning-after breakfast", note: "From our breakfast & lunch banquet menu" },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
@@ -96,18 +94,19 @@ export default function Weddings() {
 
       <section className="section section-tint" aria-labelledby="planning-title">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head section-head-center">
+            <p className="script">Plan with confidence</p>
             <h2 id="planning-title">Planning resources</h2>
+            <Ornament />
             <p>Including our preferred vendors, and a brand-new Holiday Inn Express right across the street.</p>
           </div>
-          <DownloadList
-            columns={2}
+          <LinkTiles
             items={[
-              { label: "Virtual tours & photos", href: "/classicsfivephotos", kind: "page", note: "Photos of every room" },
-              { label: "Helpful wedding planning tips", href: LEGACY_PAGES.tips, kind: "page" },
-              { label: "Our preferred vendors", href: LEGACY_PAGES.vendors, kind: "page" },
-              { label: "Wedding reception blog", href: LEGACY_PAGES.blog, kind: "page" },
-              { label: "Read our reviews on WeddingWire", href: BUSINESS.weddingWire, kind: "page", note: "Opens WeddingWire" },
+              { title: "Virtual tours & photos", note: "Photos of every room", href: "/classicsfivephotos", img: IMG.mainHallBlue },
+              { title: "Helpful wedding planning tips", note: "From our planning team", href: LEGACY_PAGES.tips, img: IMG.ceremony, external: true },
+              { title: "Our preferred vendors", note: "Friends of Classics V", href: LEGACY_PAGES.vendors, img: IMG.centerpieceUpgrade, external: true },
+              { title: "Wedding reception blog", note: "Ideas and real receptions", href: LEGACY_PAGES.blog, img: IMG.sweetheart, external: true },
+              { title: "Read our reviews", note: "On WeddingWire", href: BUSINESS.weddingWire, img: IMG.redWedding, external: true, site: "WeddingWire" },
             ]}
           />
         </div>

@@ -23,7 +23,7 @@ export default function MenuShowcase() {
                 <span className="menu-caption">
                   <span className="menu-title">{m.title}</span>
                   <span className="menu-inside">{m.inside}</span>
-                  <span className="menu-meta"><Download /> PDF · {m.pages}<span className="sr-only">, opens in a new tab</span></span>
+                  <span className="menu-meta"><Download /> PDF · {m.pages} {m.pages === 1 ? "page" : "pages"}<span className="sr-only">, opens in a new tab</span></span>
                 </span>
               </a>
             </li>

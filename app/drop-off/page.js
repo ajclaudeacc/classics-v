@@ -1,5 +1,4 @@
 import PageHero from "@/components/PageHero";
-import DownloadList from "@/components/DownloadList";
 import CallToAction from "@/components/CallToAction";
 import { IMG, PDF } from "@/lib/site";
 
@@ -25,7 +24,7 @@ export default function Catering() {
         img={IMG.exteriorColor}
         alt="Classics V building exterior with the Terrace Room entrance"
       >
-        <a className="btn btn-primary btn-lg" href={PDF.catering}>Download the catering menu</a>
+        <a className="btn btn-primary btn-lg" href="#pages-title">See the catering menu</a>
       </PageHero>
 
       <section className="section" aria-labelledby="pages-title">
@@ -44,7 +43,7 @@ export default function Catering() {
               </li>
             ))}
           </ul>
-          <DownloadList items={[{ label: "Full catering menu & options", href: PDF.catering }]} />
+          <p className="center"><a className="btn btn-primary" href={PDF.catering} target="_blank" rel="noopener">Open the full catering menu (PDF, 5 pages)</a></p>
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import PageHero from "@/components/PageHero";
-import DownloadList from "@/components/DownloadList";
+import PdfCards from "@/components/PdfCards";
 import { Phone } from "@/components/Icons";
-import { BUSINESS, IMG, PDF } from "@/lib/site";
+import { BUSINESS, IMG, DOCS } from "@/lib/site";
 
 export const metadata = {
   title: "Funeral Gatherings",
@@ -22,7 +22,7 @@ export default function FuneralGatherings() {
         <div className="container narrow">
           <h2>Funeral gatherings menu</h2>
           <p className="lead-text">See our special funeral gatherings menu, then call our office to arrange the room and timing.</p>
-          <DownloadList items={[{ label: "2026 Funeral Gatherings Menu", href: PDF.funeral }]} />
+          <PdfCards docs={[DOCS.funeral]} />
           <div className="call-box">
             <p>To arrange a gathering, please call</p>
             <a className="btn btn-primary btn-lg" href={BUSINESS.phoneHref}><Phone /> {BUSINESS.phone}</a>

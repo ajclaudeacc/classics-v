@@ -1,10 +1,12 @@
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import Photo from "@/components/Photo";
-import DownloadList from "@/components/DownloadList";
+import PdfCards from "@/components/PdfCards";
+import LinkTiles from "@/components/LinkTiles";
+import Ornament from "@/components/Ornament";
 import CallToAction from "@/components/CallToAction";
 import { Check, Users } from "@/components/Icons";
-import { IMG, PDF, LEGACY_PAGES, ROOMS } from "@/lib/site";
+import { IMG, PDF, LEGACY_PAGES, ROOMS, DOCS } from "@/lib/site";
 
 export const metadata = {
   title: "Banquet Hall & Shower Venue",
@@ -62,25 +64,26 @@ export default function Banquets() {
         </div>
       </section>
 
-      <section id="menus" className="section" aria-labelledby="menus-title">
+      <section id="menus" className="section section-tint docs-section" aria-labelledby="menus-title">
         <div className="container">
-          <div className="section-head">
-            <h2 id="menus-title">Banquet & shower menus</h2>
-            <p>Download full menus with pricing.</p>
+          <div className="section-head section-head-center">
+            <p className="script">Great food! Since 1985</p>
+            <h2 id="menus-title">Banquet &amp; shower menus</h2>
+            <Ornament />
+            <p>Select a cover to open the full menu with pricing.</p>
           </div>
-          <DownloadList
-            columns={2}
-            items={[
-              { label: "2026 Breakfast, Brunch & Lunch Banquet Menu", href: PDF.lunch },
-              { label: "2026 Dinner, Stations, Hors d’oeuvres & Cocktail Packages", href: PDF.dinner },
-              { label: "Youth organizations menu options", href: LEGACY_PAGES.youth, kind: "page" },
-              { label: "Prom package", href: PDF.prom },
-              { label: "Funeral gatherings", href: PDF.funeral },
-              { label: "Banquet enhancements", href: LEGACY_PAGES.enhancements, kind: "page" },
-              { label: "Coffee & desserts", href: LEGACY_PAGES.desserts, kind: "page" },
-              { label: "Terms & conditions", href: PDF.terms },
-            ]}
-          />
+          <PdfCards docs={[DOCS.lunch, DOCS.dinner, DOCS.prom, DOCS.funeral, DOCS.terms]} />
+
+          <div className="weekend">
+            <h3 className="weekend-title">More ways to customize</h3>
+            <LinkTiles
+              items={[
+                { title: "Youth organizations", note: "Menu options for youth groups", href: LEGACY_PAGES.youth, img: IMG.anthonyDaniel, external: true },
+                { title: "Banquet enhancements", note: "Upgrades for your event", href: LEGACY_PAGES.enhancements, img: IMG.lampCenterpiece, external: true },
+                { title: "Coffee & desserts", note: "Dessert and coffee stations", href: LEGACY_PAGES.desserts, img: IMG.christinaMaria, external: true },
+              ]}
+            />
+          </div>
         </div>
       </section>
 

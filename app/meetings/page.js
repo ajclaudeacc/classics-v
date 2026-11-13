@@ -1,8 +1,8 @@
 import PageHero from "@/components/PageHero";
-import DownloadList from "@/components/DownloadList";
+import PdfCards from "@/components/PdfCards";
 import CallToAction from "@/components/CallToAction";
 import { Check } from "@/components/Icons";
-import { BUSINESS, IMG, PDF } from "@/lib/site";
+import { BUSINESS, IMG, PDF, DOCS } from "@/lib/site";
 import Link from "next/link";
 import { TraditionalPlan, TheaterPlan, TradeShowPlan } from "@/components/LayoutPlans";
 
@@ -28,7 +28,7 @@ export default function Meetings() {
         img={IMG.christinaWide}
         alt="Large room with round tables and white linens ready for a seminar"
       >
-        <a className="btn btn-primary btn-lg" href={PDF.lunch}>Seminar & meetings menu</a>
+        <a className="btn btn-primary btn-lg" href="#menu-title">Seminar & meetings menu</a>
         <Link className="btn btn-outline-light btn-lg" href="/contact">Plan your meeting</Link>
       </PageHero>
 
@@ -68,12 +68,12 @@ export default function Meetings() {
         <div className="container split split-top">
           <div className="section-head">
             <h2 id="menu-title">Conference menu options</h2>
-            <p>Download the full seminar and meetings menu with pricing.</p>
+            <p>Open the full seminar and meetings menu with pricing.</p>
             <ul className="checklist checklist-compact">
               {INCLUDED.map((i) => <li key={i}><Check />{i}</li>)}
             </ul>
           </div>
-          <DownloadList items={[{ label: "Seminar & Meetings Menu with pricing", href: PDF.lunch }]} />
+          <PdfCards docs={[{ ...DOCS.lunch, label: "Seminar & meetings menu", note: "Breakfast, lunch and break service for meetings and seminars, with pricing." }]} />
         </div>
       </section>
 

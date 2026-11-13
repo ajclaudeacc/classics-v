@@ -263,3 +263,21 @@ appear on the current site; everything else is the original content, sometimes s
 - Online application form: job, name, email, phone, availability (weekdays/weeknights/weekends) and optional experience. It uses the same switch as the inquiry forms, so it saves nothing until `INQUIRY_FORM_LIVE=true`. When it's on, applications go to a new `job_applications` table in Supabase.
 - Links added: "Careers: we're hiring" in the footer, "Careers" in the mobile menu, and a navy "Now hiring" strip on the homepage above the closing call to action.
 - New wording written by us (VERIFY): the page intro, both job descriptions and the form text. No pay, hours or requirements are listed because none were provided.
+
+### PDF covers, hiring banner and photos page
+- **Every PDF now shows its cover.** I made an image of each PDF's first page (11 documents) and turned every PDF link into a cover card with the title, what's inside and the real page count. Selecting a card opens the PDF.
+  - Weddings: the five wedding packages, plus "More for your wedding weekend" (bridal showers, rehearsal dinners, morning-after breakfast).
+  - Banquets & Showers: the breakfast & lunch menu, dinner menu, prom package, funeral gatherings and terms of agreement.
+  - Meetings, Funeral Gatherings and Contact (terms of agreement): the same cover cards.
+  - Catering already showed its menu pages, which link to the PDF. The old download list there became a button.
+  - Card titles follow each document's own cover, for example "Wedding Package Add-ons" and "Dinner Stations Reception".
+- **Planning resources** (Weddings) and **More ways to customize** (Banquets): the plain link lists are now photo tiles using the site's own photos.
+- **Hiring banner** at the top of every page: "We're hiring. Servers and dishwashers wanted. How to apply." The X closes it and it stays closed for that visitor. It's hidden on the Careers page itself.
+- **Photos page:**
+  - Room filter buttons that stay at the top while scrolling, with a photo count for each room.
+  - A large lead photo for each room, and every row ends evenly.
+  - Hovering a photo shows its caption.
+  - The photo viewer shows the room name and supports swiping on phones.
+  - New Virtual tours section with the two existing videos.
+  - The extras cards now have photos and price tags.
+- VERIFY: the terms of agreement PDF is dated January 2025. The catering page images say 2025, but the catering PDF is the 2024 edition.
