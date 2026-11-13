@@ -229,3 +229,31 @@ appear on the current site; everything else is the original content, sometimes s
 - Current office hours.
 - Extras prices ($450, $125, $4 per table).
 - The new wording listed above (homepage intro, funeral gatherings text and card line, planning steps).
+
+## Later design rounds
+
+- **Homepage hero slideshow:** five venue photos (main ballroom, outside view, wedding reception, Terrace Room, Christina
+  Maria Room) cross-fade every 6 seconds, with dots and a pause button. Still for visitors who prefer reduced motion.
+- **Tagline in the hero:** "Personal Service with a Classical Touch" (from the current footer) in gold script.
+- **Upcoming events:** large featured card with the flyer, a date badge, a live "Tomorrow" / "In 5 days" label, the DJ
+  lineup from the flyer (Tony Caruso, Tim Nowka, Dan DeGoski, Tom Angelo, DJ Anthony), "Get tickets" and "Add to
+  calendar". New line: "New events are announced on Facebook and Instagram."
+- **Meetings:** the Traditional, Theater and Trade Show cards now show simple floor plans and a "Best for" line (new
+  wording: "Conferences, staff and progress meetings", "Videos, presentations and performances", "Exhibitors, vendors and
+  booths").
+- **Style chosen by questionnaire:** timeless and elegant, navy with champagne-gold accents, balanced photos and text,
+  moderate motion (sections fade in on scroll, the facts strip counts up).
+- **Heading font:** Playfair Display (chosen from ten options).
+- **Personality touches drawn from the original site:**
+  - Gold script lines reuse the old banner taglines: "Great food! Since 1985", "Dream weddings happen here",
+    "Meetings with your company in mind".
+  - "Banquets with a classic touch" comes from the menu covers.
+  - "Let us do the work for you" comes from the Weddings page.
+  - Gold flourish dividers are a refined version of the original swirl ornaments.
+  - Warm linen backgrounds replace cool gray.
+- **"Our menus" showcase on the homepage:**
+  - Replaces the plain download links with the real menu covers on a navy background: 2026 Dinner, 2026 Breakfast &
+    Lunch, Wedding Reception Packages, Catering and 2026 Funeral Gatherings.
+  - The covers are rendered from the first page of each PDF and saved in `public/menus`.
+  - The covers confirm that the wedding packages document is the 2025 edition and the catering menu is the 2024 edition.
+- **Removed from the homepage:** the "Remodeled, main hall 2020" fact (the remodel is still described on Our Rooms).

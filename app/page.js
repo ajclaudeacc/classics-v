@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Photo from "@/components/Photo";
 import Video from "@/components/Video";
-import DownloadList from "@/components/DownloadList";
 import CallToAction from "@/components/CallToAction";
 import HeroSlides from "@/components/HeroSlides";
 import Events from "@/components/Events";
 import Facts from "@/components/Facts";
+import MenuShowcase from "@/components/MenuShowcase";
+import Ornament from "@/components/Ornament";
 import { Phone, Arrow, Users } from "@/components/Icons";
-import { BUSINESS, IMG, ROOMS, SERVICES, PDF, VIDEOS, upcomingEvents } from "@/lib/site";
+import { BUSINESS, IMG, ROOMS, SERVICES, VIDEOS, upcomingEvents } from "@/lib/site";
 
 const HERO_SLIDES = [
   { src: IMG.mainHallBlue, label: "Main ballroom", alt: "The remodeled main ballroom set for a reception, with white chair covers, navy sashes and uplighting" },
@@ -44,6 +45,7 @@ export default function Home() {
         <HeroSlides slides={HERO_SLIDES} />
         <div className="hero-shade" aria-hidden="true" />
         <div className="container hero-inner">
+          <p className="script hero-script">{BUSINESS.tagline}</p>
           <h1>Wedding venue, banquet hall &amp; conference center in Amherst, NY</h1>
           <p className="hero-lead">Family owned and operated since {BUSINESS.since}. Great food, customizable packages and personal planning help for weddings, showers, meetings and every celebration in between.</p>
           <div className="hero-actions">
@@ -64,7 +66,9 @@ export default function Home() {
       <section className="section">
         <div className="container split">
           <div className="prose">
+            <p className="script">Banquets with a classic touch</p>
             <h2>Unforgettable events in the Buffalo area for over 35 years</h2>
+            <Ornament className="ornament-left" />
             <p>
               Classics V is a family-owned and operated event venue in Amherst, NY. From mouth-watering food and customizable
               packages to event planning services that make your event stand out, we help make wedding receptions and special
@@ -97,7 +101,7 @@ export default function Home() {
                 <Photo src={s.img} alt={s.alt} className="card-img" sizes="(min-width: 1000px) 20vw, (min-width: 640px) 45vw, 100vw" widths={[500, 750, 1000]} />
                 <div className="card-body">
                   <h3><Link href={s.href} className="stretched">{s.title}</Link></h3>
-                  <p>{s.line}</p>
+                  <p className="card-script">{s.line}</p>
                 </div>
               </li>
             ))}
@@ -164,6 +168,8 @@ export default function Home() {
         </section>
       )}
 
+      <MenuShowcase />
+
       <section className="section section-tint" aria-labelledby="steps-title">
         <div className="container">
           <div className="section-head">
@@ -193,21 +199,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="menus-title">
-        <div className="container split split-top">
-          <div className="section-head">
-            <h2 id="menus-title">2026 banquet menus</h2>
-            <p>Full menus with pricing. Breakfast, brunch, lunch, dinner, stations, hors d&rsquo;oeuvres and cocktail packages.</p>
-          </div>
-          <DownloadList
-            items={[
-              { label: "2026 Dinner Banquet Menu with pricing", href: PDF.dinnerHome },
-              { label: "2026 Breakfast & Lunch Banquet Menu with pricing", href: PDF.lunchHome },
-              { label: "Funeral Gatherings menu", href: PDF.funeral },
-            ]}
-          />
-        </div>
-      </section>
 
       <CallToAction title="Let Classics V host your event" text="We're still offering private tours. Call to check availability or to schedule a visit." />
     </>
