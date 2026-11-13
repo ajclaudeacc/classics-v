@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Classics V: website redesign (preview)
 
-## Getting Started
+A redesign proposal for [classicsfive.com](https://classicsfive.com), the website of Classics V Banquet & Conference
+Center in Amherst, NY. All business information, menus, photos and videos come from the current site.
 
-First, run the development server:
+Built with Next.js (App Router). No UI framework; styles live in `app/globals.css`.
+
+## Run locally
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Settings
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` locally, and add the same variables in Vercel.
 
-## Learn More
+| Variable | What it does |
+|---|---|
+| `NEXT_PUBLIC_PREVIEW_MODE` | `true` (default) shows the "design preview" notice and keeps the site out of search engines. Set to `false` only when this becomes the official site. |
+| `INQUIRY_FORM_LIVE` | Forms save nothing until this is `true`. Turn it on only after Classics V approves the site and will check the inquiries. |
+| `DATABASE_URL` | Supabase **Transaction pooler** connection string (port 6543). Inquiries go into an `inquiries` table that is created automatically. |
 
-To learn more about Next.js, take a look at the following resources:
+## Where things are
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Path | Contents |
+|---|---|
+| `lib/site.js` | All business facts: address, phone, rooms, menus (PDF links), events, videos. Edit content here. |
+| `lib/gallery.js` | Photo gallery groups. |
+| `app/<page>/page.js` | One folder per page, using the same addresses as the current site. |
+| `components/` | Header, footer, hero, inquiry form, video, gallery and other shared pieces. |
+| `app/api/inquiry/route.js` | Receives form submissions. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Images
 
-## Deploy on Vercel
+Photos load from the current site's Squarespace image CDN (`images.squarespace-cdn.com`), resized per screen. Menus and
+some pages still link to files on classicsfive.com. **Before the old Squarespace site is cancelled, download those
+images and PDFs into `public/`**, or they will stop loading.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content to confirm with Classics V
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Search the code for `VERIFY` to find these:
+
+- Years of experience: the site says both "over 35 years" and "over 25 years"; family owned "since 1985".
+- Terrace Room capacity: "up to 150" in one place, "50 to 140" in another.
+- Main ballroom: "up to 400 banquet-style" and "up to 500".
+- Email `info@classicsv.com` uses a different domain from the website.
+- File names of the wedding packages and brunch PDFs say 2025, and the catering menu PDF says 2024.
+- Office hours: the current site still has a temporary "hoping to resume normal office hours" note. The redesign says
+  "Evenings and weekends by appointment only. Please call ahead." Confirm current hours.
+- Extras prices on the Photos page ($450 photo booth, $125 backdrop, $4 per table mirror and votive).
+- The old site's /testimonials and /special-events pages return "not found".

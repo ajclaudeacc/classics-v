@@ -1,0 +1,13 @@
+const base = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true, focusable: "false" };
+export const Phone = (p) => (<svg {...base} {...p}><path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 6.5 6.5L16 14l4 1.5V19a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z" /></svg>);
+export const Mail = (p) => (<svg {...base} {...p}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5L12 13l8.5-6.5" /></svg>);
+export const Pin = (p) => (<svg {...base} {...p}><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></svg>);
+export const Download = (p) => (<svg {...base} {...p}><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14" /></svg>);
+export const Arrow = (p) => (<svg {...base} {...p}><path d="M5 12h14M13 6l6 6-6 6" /></svg>);
+export const External = (p) => (<svg {...base} {...p}><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></svg>);
+export const Menu = (p) => (<svg {...base} {...p}><path d="M4 7h16M4 12h16M4 17h16" /></svg>);
+export const Close = (p) => (<svg {...base} {...p}><path d="M6 6l12 12M18 6L6 18" /></svg>);
+export const Check = (p) => (<svg {...base} {...p}><path d="M5 12.5l4.2 4.2L19 7" /></svg>);
+export const Play = (p) => (<svg {...base} {...p} fill="currentColor" stroke="none"><path d="M8 5.5v13l11-6.5z" /></svg>);
+export const Users = (p) => (<svg {...base} {...p}><circle cx="9" cy="8" r="3.2" /><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" /><path d="M16 5.2a3 3 0 0 1 0 5.6M18 13.8c2 .7 3 2.6 3 5.2" /></svg>);
+export const Chevron = (p) => (<svg {...base} {...p}><path d="M9 6l6 6-6 6" /></svg>);
