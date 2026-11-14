@@ -6,9 +6,7 @@ import { BUSINESS, NAV, IMG, cdn } from "@/lib/site";
 import { Phone, Menu, Close } from "./Icons";
 import Photo from "./Photo";
 
-// Split navigation with the logo in the middle on wide screens; a full-screen menu below 1180px.
-const LEFT = NAV.slice(0, 4);
-const RIGHT = NAV.slice(4);
+// Logo, centred navigation and actions on wide screens; a full-screen menu below 1260px.
 const MENU = [{ href: "/", label: "Home" }, ...NAV, { href: "/contact", label: "Contact" }, { href: "/careers", label: "Careers" }];
 
 export default function Header() {
@@ -31,7 +29,7 @@ export default function Header() {
       const top = Math.max(0, bar.current.getBoundingClientRect().bottom);
       setPanel({ top, height: window.innerHeight - top });
     };
-    const wide = window.matchMedia("(min-width: 1181px)");
+    const wide = window.matchMedia("(min-width: 1261px)");
     const onWide = (e) => e.matches && setOpen(false);
     fit();
     document.addEventListener("keydown", onKey);
@@ -54,17 +52,14 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="wrap bar" ref={bar}>
-        <nav className="nav-side" aria-label="Main">{LEFT.map(link)}</nav>
         <Link href="/" className="brand" aria-label={`${BUSINESS.name}, home`}>
-          <img src={cdn(IMG.logo, 500)} alt="" width="132" height="55" />
+          <img src={cdn(IMG.logo, 500)} alt="" width="118" height="49" />
           <span className="brand-sub">Banquet &amp; Conference Center</span>
         </Link>
-        <nav className="nav-side right" aria-label="More">
-          {RIGHT.map(link)}
+        <nav className="nav-main" aria-label="Main">{NAV.map(link)}</nav>
+        <div className="header-actions">
+          <a className="header-phone" href={BUSINESS.phoneHref} aria-label={`Call ${BUSINESS.phone}`}><Phone /><span>{BUSINESS.phone}</span></a>
           <Link className="btn btn-primary btn-sm" href="/contact">Book a tour</Link>
-        </nav>
-        <div className="header-tools">
-          <a className="header-phone" href={BUSINESS.phoneHref}><Phone /><span className="sr-only">Call {BUSINESS.phone}</span></a>
           <button type="button" ref={toggle} className="menu-toggle" aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen((o) => !o)}>
             {open ? <Close /> : <Menu />}
             {open ? "Close" : "Menu"}

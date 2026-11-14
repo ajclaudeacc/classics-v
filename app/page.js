@@ -2,13 +2,24 @@ import Link from "next/link";
 import Photo from "@/components/Photo";
 import Video from "@/components/Video";
 import CallToAction from "@/components/CallToAction";
+import HeroSlides from "@/components/HeroSlides";
 import Events from "@/components/Events";
 import Facts from "@/components/Facts";
 import MenuShowcase from "@/components/MenuShowcase";
+import RevealList from "@/components/RevealList";
+import RoomStrip from "@/components/RoomStrip";
 import { Phone, Arrow } from "@/components/Icons";
 import { BUSINESS, IMG, ROOMS, SERVICES, VIDEOS, upcomingEvents } from "@/lib/site";
 
 export const metadata = { alternates: { canonical: "/" } };
+
+const HERO_SLIDES = [
+  { src: IMG.mainHallBlue, label: "Main ballroom", alt: "The remodeled main ballroom set for a reception, with white chair covers, navy sashes and uplighting" },
+  { src: IMG.exteriorColor, label: "Outside view", alt: "Outside view of Classics V, with the Terrace Room entrance and green awning" },
+  { src: IMG.redWedding, label: "Wedding reception", alt: "Wedding reception in the main hall with red uplighting and a long head table" },
+  { src: IMG.terrace, label: "Terrace Room", alt: "The Terrace Room set for a wedding with burgundy linens and white chair covers" },
+  { src: IMG.christinaMaria, label: "Christina Maria Room", alt: "Christina Maria Room with candlelit head tables" },
+];
 
 const QUICK = [
   { href: "/weddings", label: "A wedding" },
@@ -18,12 +29,14 @@ const QUICK = [
   { href: "/drop-off", label: "Catering" },
 ];
 
+const RIBBON = ["Weddings", "Showers", "Anniversaries", "Reunions", "Birthdays", "Business meetings", "Holiday parties"];
+
 const WALL = [
   { src: IMG.redWedding, alt: "Wedding reception with red uplighting in the main hall" },
   { src: IMG.holiday, alt: "Holiday party with red and green uplighting" },
-  { src: IMG.christinaMaria, alt: "Christina Maria Room with candlelit head tables" },
-  { src: IMG.anthonyDaniel, alt: "Anthony Daniel Room set for a shower" },
+  { src: IMG.ceremony, alt: "Ceremony set up with white chair covers" },
   { src: IMG.sweetheart, alt: "Sweetheart head table with floral arch" },
+  { src: IMG.christinaWide, alt: "Large room with round tables and white linens" },
 ];
 
 // Rebuild hourly so past events drop off on their own soon after the day ends.
@@ -33,59 +46,48 @@ export default function Home() {
   const events = upcomingEvents();
   return (
     <>
-      <section className="home-hero">
-        <div className="wrap home-hero-grid">
-          <div data-enter>
-            <div>
-              <p className="kicker">{BUSINESS.tagline}</p>
-              <h1>Wedding venue, banquet hall <em>&amp;</em> conference center</h1>
-              <p className="lead">Family owned and operated since {BUSINESS.since}. Great food, customizable packages and personal planning help for weddings, showers, meetings and every celebration in between.</p>
-              <div className="actions">
-                <Link className="btn btn-primary btn-lg" href="/contact">Book a private tour <Arrow /></Link>
-                <a className="phone-link" href={BUSINESS.phoneHref}><Phone /> {BUSINESS.phone}</a>
-              </div>
-              <nav className="hero-meta" aria-label="What are you planning?">
-                <strong>What are you planning?</strong>
-                {QUICK.map((q) => <Link key={q.href} className="text-link" href={q.href}>{q.label}</Link>)}
-              </nav>
-            </div>
+      <section className="cine">
+        <HeroSlides slides={HERO_SLIDES} />
+        <div className="cine-shade" aria-hidden="true" />
+        <div className="wrap cine-inner" data-enter>
+          <p className="kicker">{BUSINESS.tagline}</p>
+          <h1>Wedding venue, banquet hall <em>&amp;</em> conference center</h1>
+          <p className="lead">Family owned and operated since {BUSINESS.since}. Great food, customizable packages and personal planning help for weddings, showers, meetings and every celebration in between.</p>
+          <div className="actions">
+            <Link className="btn btn-primary btn-lg" href="/contact">Book a private tour <Arrow /></Link>
+            <a className="phone-link" href={BUSINESS.phoneHref}><Phone /> {BUSINESS.phone}</a>
           </div>
-          <div className="mosaic">
-            <div className="frame"><Photo src={IMG.mainHallBlue} alt="The remodeled main ballroom set for a reception, with white chair covers, navy sashes and uplighting" priority sizes="(min-width: 900px) 30vw, 100vw" widths={[750, 1000, 1500]} /></div>
-            <div className="frame"><Photo src={IMG.exteriorColor} alt="Outside view of Classics V, with the Terrace Room entrance and green awning" priority sizes="(min-width: 900px) 22vw, 50vw" widths={[500, 750, 1000]} /></div>
-            <div className="frame"><Photo src={IMG.terrace} alt="The Terrace Room set for a wedding with burgundy linens and white chair covers" priority sizes="(min-width: 900px) 22vw, 50vw" widths={[500, 750, 1000]} /></div>
+          <div className="cine-foot">
+            <nav className="cine-quick" aria-label="What are you planning?">
+              <strong>What are you planning?</strong>
+              {QUICK.map((q) => <Link key={q.href} className="text-link" href={q.href}>{q.label}</Link>)}
+            </nav>
           </div>
         </div>
+      </section>
+
+      <section className="ribbon" aria-label="Occasions">
+        <ul className="wrap">
+          {RIBBON.map((r) => <li key={r}>{r}</li>)}
+        </ul>
       </section>
 
       <Facts />
 
-      <section className="section" aria-labelledby="services-title">
+      <section className="section band" aria-labelledby="services-title">
         <div className="wrap">
           <div className="head">
             <div>
               <p className="kicker">What we host</p>
-              <h2 id="services-title">Events we host</h2>
+              <h2 id="services-title">Events <em>we host</em></h2>
             </div>
             <p className="lead">Whatever the size of your group, there&rsquo;s a room and a menu to fit it.</p>
           </div>
-          <ol className="index-list">
-            {SERVICES.map((s, i) => (
-              <li key={s.href}>
-                <Link className="index-row" href={s.href}>
-                  <span className="index-num">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="index-title">{s.title}</span>
-                  <span className="index-line">{s.line}</span>
-                  <span className="frame"><Photo src={s.img} alt="" sizes="170px" widths={[300, 500]} /></span>
-                  <span className="index-arrow" aria-hidden="true"><Arrow /></span>
-                </Link>
-              </li>
-            ))}
-          </ol>
+          <RevealList items={SERVICES} />
         </div>
       </section>
 
-      <section className="section band" aria-labelledby="story-title">
+      <section className="section" aria-labelledby="story-title">
         <div className="wrap story">
           <div className="story-text">
             <p className="kicker">Banquets with a classic touch</p>
@@ -107,31 +109,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="rooms-title">
-        <div className="wrap">
-          <div className="head-row">
+      <section className="section band" aria-labelledby="rooms-title">
+        <RoomStrip
+          rooms={ROOMS}
+          heading={
             <div>
               <p className="kicker">Four rooms</p>
-              <h2 id="rooms-title">One for every size of event</h2>
+              <h2 id="rooms-title">One for every <em>size of event</em></h2>
+              <p className="lead" style={{ marginTop: 14 }}>Our main ballroom opens up for up to 500 guests, and the private Terrace Room has its own patio.</p>
+              <p style={{ marginTop: 10 }}><Link className="text-link" href="/about">Room details <Arrow /></Link></p>
             </div>
-            <Link className="text-link" href="/about">Room details <Arrow /></Link>
-          </div>
-          <p className="lead" style={{ marginBottom: 36 }}>Our main ballroom opens up for up to 500 guests, and the private Terrace Room has its own patio.</p>
-          <ul className="spec">
-            {ROOMS.map((r) => (
-              <li key={r.id}>
-                <Link className="spec-row" href={`/about#${r.id}`}>
-                  <span className="frame"><Photo src={r.img} alt={r.alt} sizes="(min-width: 760px) 220px, 110px" widths={[300, 500]} /></span>
-                  <span>
-                    <span className="spec-name">{r.name}</span>
-                    <span className="spec-sub" style={{ display: "block" }}>{r.sub || r.text}</span>
-                  </span>
-                  <span className="spec-cap"><strong>{r.capacity.replace(" guests", "")}</strong><span>guests</span></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+          }
+        />
       </section>
 
       <section className="section" aria-labelledby="inside-title">
@@ -139,7 +128,7 @@ export default function Home() {
           <div className="head-row">
             <div>
               <p className="kicker">Photos</p>
-              <h2 id="inside-title">Take a look inside</h2>
+              <h2 id="inside-title">Take a look <em>inside</em></h2>
             </div>
             <Link className="text-link" href="/classicsfivephotos">See all photos <Arrow /></Link>
           </div>
@@ -147,7 +136,7 @@ export default function Home() {
             {WALL.map((m, i) => (
               <li key={m.src}>
                 <Link href="/classicsfivephotos" className="frame" style={{ display: "block", height: "100%" }} aria-label={`${m.alt}. See all photos`}>
-                  <Photo src={m.src} alt="" sizes={i === 0 ? "(min-width: 760px) 58vw, 100vw" : "(min-width: 760px) 34vw, 50vw"} widths={[500, 750, 1000, 1500]} />
+                  <Photo src={m.src} alt="" sizes={i === 4 ? "100vw" : "(min-width: 760px) 40vw, 50vw"} widths={[500, 750, 1000, 1500]} />
                 </Link>
               </li>
             ))}
@@ -160,7 +149,7 @@ export default function Home() {
           <div className="head">
             <div>
               <p className="kicker">On the calendar</p>
-              <h2 id="events-title">Upcoming public events</h2>
+              <h2 id="events-title">Upcoming <em>public events</em></h2>
             </div>
             <p className="lead">Dances, live music and seasonal parties. Tickets are sold through each event&rsquo;s ticketing page.</p>
           </div>
@@ -170,12 +159,12 @@ export default function Home() {
 
       <MenuShowcase />
 
-      <section className="section" aria-labelledby="steps-title">
+      <section className="section band" aria-labelledby="steps-title">
         <div className="wrap">
           <div className="head">
             <div>
               <p className="kicker">How it works</p>
-              <h2 id="steps-title">Planning with us is simple</h2>
+              <h2 id="steps-title">Planning with us <em>is simple</em></h2>
             </div>
             <p className="lead">Three steps from first call to the big day.</p>
           </div>
@@ -202,7 +191,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="visit" className="section band" aria-labelledby="visit-title">
+      <section id="visit" className="section" aria-labelledby="visit-title">
         <div className="wrap visit-grid">
           <div>
             <p className="kicker">Visit us</p>
@@ -212,14 +201,14 @@ export default function Home() {
               <div><dt>Call</dt><dd><a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a></dd></div>
               <div><dt>Email</dt><dd><a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a></dd></div>
               <div><dt>Office</dt><dd>Evenings and weekends by appointment only.</dd></div>
-              <div><dt>Now hiring</dt><dd><Link href="/careers">Servers and dishwashers: how to apply</Link></dd></div>
+              <div><dt>Now hiring</dt><dd><Link href="/careers">Servers and dishwashers</Link></dd></div>
             </dl>
           </div>
           <div className="frame visit-photo"><Photo src={IMG.exterior} alt="The Classics V building entrance with its columned archway" sizes="(min-width: 900px) 40vw, 100vw" widths={[750, 1000, 1500]} /></div>
         </div>
       </section>
 
-      <CallToAction title="Let Classics V host your event" text="We're still offering private tours. Call to check availability or to schedule a visit." img={IMG.christinaMaria} alt="Christina Maria Room with candlelit head tables" />
+      <CallToAction title="Let Classics V host your event" text="We're still offering private tours. Call to check availability or to schedule a visit." img={IMG.christinaMaria} />
     </>
   );
 }

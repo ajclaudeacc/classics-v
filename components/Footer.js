@@ -5,6 +5,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="wrap">
+        <p className="footer-word" aria-hidden="true">Classics <span>V</span></p>
         <div className="footer-top">
           <div className="footer-brand">
             <p className="footer-name">{BUSINESS.name}</p>

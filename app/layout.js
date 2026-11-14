@@ -1,9 +1,9 @@
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/500-italic.css";
-import "@fontsource/manrope/400.css";
-import "@fontsource/manrope/500.css";
-import "@fontsource/manrope/600.css";
-import "@fontsource/manrope/700.css";
+import "@fontsource/bodoni-moda/400.css";
+import "@fontsource/bodoni-moda/400-italic.css";
+import "@fontsource/jost/300.css";
+import "@fontsource/jost/400.css";
+import "@fontsource/jost/500.css";
+import "@fontsource/jost/600.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -37,7 +37,7 @@ export const metadata = {
   robots: preview ? { index: false, follow: false } : undefined,
 };
 
-export const viewport = { themeColor: "#f6f1e9" };
+export const viewport = { themeColor: "#07101c" };
 
 const jsonLd = {
   "@context": "https://schema.org",

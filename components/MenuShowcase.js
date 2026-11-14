@@ -4,12 +4,12 @@ import { Download } from "./Icons";
 // The banquet menus as a shelf of their real covers.
 export default function MenuShowcase() {
   return (
-    <section className="section band" aria-labelledby="menus-title">
+    <section className="section" aria-labelledby="menus-title">
       <div className="wrap">
         <div className="head">
           <div>
             <p className="kicker">Great food! Since 1985</p>
-            <h2 id="menus-title">Our menus</h2>
+            <h2 id="menus-title">Our <em>menus</em></h2>
           </div>
           <p className="lead">Full menus with pricing, straight from our kitchen. Select a cover to open it.</p>
         </div>

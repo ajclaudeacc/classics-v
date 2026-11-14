@@ -12,17 +12,13 @@ export const metadata = {
 export default function Contact() {
   return (
     <>
-      <section className="intro">
-        <div className="wrap">
-          <div className="intro-grid" data-enter>
-            <div>
-              <p className="kicker">Contact</p>
-              <h1>Contact us</h1>
-            </div>
-            <div className="intro-side">
-              <p className="lead">Speak with our office staff to check availability, ask questions or schedule a tour of our newly renovated ballrooms.</p>
-            </div>
+      <section className="contact-top">
+        <div className="wrap contact-top-grid" data-enter>
+          <div>
+            <p className="kicker">Contact</p>
+            <h1>Contact <em>us</em></h1>
           </div>
+          <p className="lead">Speak with our office staff to check availability, ask questions or schedule a tour of our newly renovated ballrooms.</p>
         </div>
       </section>
 
