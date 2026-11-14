@@ -10,7 +10,7 @@ export default function LinkTiles({ items }) {
       {items.map((t) => {
         const inner = (
           <>
-            <NearImg src={cdn(t.img, 750)} srcSet={cdnSrcSet(t.img, [500, 750, 1000])} sizes="(min-width: 900px) 33vw, 100vw" alt="" />
+            <span className="tile-img"><NearImg src={cdn(t.img, 750)} srcSet={cdnSrcSet(t.img, [500, 750, 1000])} sizes="(min-width: 900px) 33vw, 100vw" alt="" /></span>
             <span className="tile-shade" aria-hidden="true" />
             <span className="tile-text">
               <span className="tile-title">{t.title}</span>

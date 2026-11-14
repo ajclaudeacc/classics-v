@@ -1,9 +1,9 @@
-import "@fontsource/playfair-display/400.css";
-import "@fontsource/playfair-display/500.css";
-import "@fontsource/great-vibes/400.css";
-import "@fontsource/nunito-sans/400.css";
-import "@fontsource/nunito-sans/600.css";
-import "@fontsource/nunito-sans/700.css";
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/cormorant-garamond/500-italic.css";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/600.css";
+import "@fontsource/manrope/700.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,7 +12,7 @@ import HiringBanner from "@/components/HiringBanner";
 
 // Hides the hiring bar before first paint for visitors who closed it (key matches components/HiringBanner.js).
 const hiringScript = `try{if(localStorage.getItem("cv-hiring-dismissed"))document.documentElement.classList.add("hire-off")}catch(e){}`;
-import Reveal from "@/components/Reveal";
+import ActionBar from "@/components/ActionBar";
 import PageTransitions from "@/components/PageTransitions";
 import { BUSINESS, IMG } from "@/lib/site";
 
@@ -37,7 +37,7 @@ export const metadata = {
   robots: preview ? { index: false, follow: false } : undefined,
 };
 
-export const viewport = { themeColor: "#18283a" };
+export const viewport = { themeColor: "#f6f1e9" };
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
-        <Reveal />
+        <ActionBar />
         <PageTransitions />
         {!preview && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />}
       </body>

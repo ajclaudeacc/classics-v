@@ -1,5 +1,6 @@
 import PageHero from "@/components/PageHero";
 import CallToAction from "@/components/CallToAction";
+import Chapter from "@/components/Chapter";
 import { IMG, PDF } from "@/lib/site";
 
 export const metadata = {
@@ -20,35 +21,30 @@ export default function Catering() {
   return (
     <>
       <PageHero
+        kicker="Catering"
         title="Our place or yours"
         intro="Drop-off buffets and boxed lunches, perfect for graduations, company picnics, family reunions or any celebration. Choose from our special menus and let us do the cooking, so you can relax and enjoy your event."
         img={IMG.exteriorColor}
         alt="Classics V building exterior with the Terrace Room entrance"
       >
-        <a className="btn btn-primary btn-lg" href="#pages-title">See the catering menu</a>
+        <a className="btn btn-primary btn-lg" href="#pages">See the catering menu</a>
       </PageHero>
 
-      <section className="section" aria-labelledby="pages-title">
-        <div className="container">
-          <div className="section-head">
-            <h2 id="pages-title">Catering menu</h2>
-            <p>Pick up or drop off. Select a page to open the full menu with options and pricing.</p>
-          </div>
-          <ul className="menu-pages">
-            {PAGES.map((p) => (
-              <li key={p.src}>
-                <a href={PDF.catering} target="_blank" rel="noopener">
-                  <img src={p.src + "?format=500w"} alt={p.alt} width="483" height="625" loading="lazy" />
-                  <span className="sr-only"> (opens the catering menu PDF in a new tab)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-          <p className="center"><a className="btn btn-primary" href={PDF.catering} target="_blank" rel="noopener">Open the full catering menu (PDF, 5 pages)</a></p>
-        </div>
-      </section>
+      <Chapter num="01" id="pages" title="Catering menu" text="Pick up or drop off. Select a page to open the full menu with options and pricing.">
+        <ul className="menu-pages">
+          {PAGES.map((p) => (
+            <li key={p.src}>
+              <a href={PDF.catering} target="_blank" rel="noopener">
+                <img src={p.src + "?format=500w"} alt={p.alt} width="483" height="625" loading="lazy" />
+                <span className="sr-only"> (opens the catering menu PDF in a new tab)</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a className="btn btn-primary" href={PDF.catering} target="_blank" rel="noopener">Open the full catering menu (PDF, 5 pages)</a>
+      </Chapter>
 
-      <CallToAction title="Order catering" text="Call our office to place an order or ask about menu options." />
+      <CallToAction title="Order catering" text="Call our office to place an order or ask about menu options." img={IMG.exteriorColor} alt="Classics V exterior with the Terrace Room entrance" />
     </>
   );
 }

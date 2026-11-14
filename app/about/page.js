@@ -3,7 +3,8 @@ import PageHero from "@/components/PageHero";
 import Photo from "@/components/Photo";
 import Video from "@/components/Video";
 import CallToAction from "@/components/CallToAction";
-import { Users } from "@/components/Icons";
+import { Arrow } from "@/components/Icons";
+import Chapter from "@/components/Chapter";
 import { BUSINESS, IMG, ROOMS, VIDEOS } from "@/lib/site";
 
 export const metadata = {
@@ -16,47 +17,45 @@ export default function About() {
   return (
     <>
       <PageHero
+        kicker="Our rooms"
         title="Our banquet hall, reception venue & conference center"
         intro="With over 35 years of experience in event planning and hospitality in the Buffalo area, Classics V provides the atmosphere, great food and professional staff for your event."
         img={IMG.exterior}
         alt="The Classics V building, with its columned archway entrance"
       />
 
-      <section className="section">
-        <div className="container split">
-          <div className="prose">
-            <h2>Thank you for considering Classics V</h2>
-            <p>
-              We know how important your event is to you, and we look forward to doing all we can to ensure its success. Our main
-              facility hosts events as large as 500 people and divides into three rooms for groups as small as 35.
-            </p>
-            <p>
-              The main hall was completely remodeled in 2020, with all-new lighting fixtures, flooring and updated bathrooms, making
-              it right for business, casual or upscale events. Our Terrace Room is a separate, private building with its own patio.
-            </p>
-            <p className="small">{BUSINESS.family}</p>
-          </div>
-          <Video {...VIDEOS.about} />
-        </div>
-      </section>
+      <Chapter num="01" id="welcome" title="Thank you for considering Classics V">
+        <p className="lead">
+          We know how important your event is to you, and we look forward to doing all we can to ensure its success. Our main
+          facility hosts events as large as 500 people and divides into three rooms for groups as small as 35.
+        </p>
+        <p className="prose">
+          The main hall was completely remodeled in 2020, with all-new lighting fixtures, flooring and updated bathrooms, making
+          it right for business, casual or upscale events. Our Terrace Room is a separate, private building with its own patio.
+        </p>
+        <p className="story-sign">{BUSINESS.family}</p>
+        <Video {...VIDEOS.about} />
+      </Chapter>
 
-      <section className="section section-tint" aria-labelledby="rooms-title">
-        <div className="container">
-          <div className="section-head section-head-row">
+      <section className="section band" aria-labelledby="rooms-title">
+        <div className="wrap">
+          <div className="head-row">
             <div>
+              <p className="kicker">02 · Five spaces</p>
               <h2 id="rooms-title">Our rooms</h2>
-              <p>Use one room or open the main hall into a single ballroom.</p>
+              <p className="lead" style={{ marginTop: 12 }}>Use one room or open the main hall into a single ballroom.</p>
             </div>
-            <Link className="btn btn-secondary" href="/classicsfivephotos">Virtual tours & photos</Link>
+            <Link className="text-link" href="/classicsfivephotos">Virtual tours &amp; photos <Arrow /></Link>
           </div>
-          <ul className="room-list">
+          <ul>
             {ROOMS.map((r, i) => (
-              <li key={r.id} id={r.id} className="room">
-                <Photo src={r.img} alt={r.alt} className="room-img" sizes="(min-width: 900px) 45vw, 100vw" priority={i === 0} />
-                <div className="room-body">
+              <li key={r.id} id={r.id} className="room-feature">
+                <div className="frame"><Photo src={r.img} alt={r.alt} sizes="(min-width: 860px) 50vw, 100vw" priority={i === 0} /></div>
+                <div>
+                  <span className="num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                   <h3>{r.name}</h3>
                   {r.sub && <p className="room-sub">{r.sub}</p>}
-                  <p className="capacity"><Users /> {r.capacity}{r.detail ? ` · ${r.detail}` : ""}</p>
+                  <p className="room-cap"><strong>{r.capacity}</strong>{r.detail && <span>{r.detail}</span>}</p>
                   <p>{r.text}</p>
                 </div>
               </li>
@@ -65,7 +64,7 @@ export default function About() {
         </div>
       </section>
 
-      <CallToAction title="Looking to book one or more rooms?" text="Call our office to check dates, or send us a message and we'll get back to you." />
+      <CallToAction title="Looking to book one or more rooms?" text="Call our office to check dates, or send us a message and we'll get back to you." img={IMG.mainHallBlue} alt="The main ballroom set for a reception" />
     </>
   );
 }

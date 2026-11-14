@@ -4,27 +4,34 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BUSINESS, NAV, IMG, cdn } from "@/lib/site";
 import { Phone, Menu, Close } from "./Icons";
+import Photo from "./Photo";
+
+// Split navigation with the logo in the middle on wide screens; a full-screen menu below 1180px.
+const LEFT = NAV.slice(0, 4);
+const RIGHT = NAV.slice(4);
+const MENU = [{ href: "/", label: "Home" }, ...NAV, { href: "/contact", label: "Contact" }, { href: "/careers", label: "Careers" }];
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const toggle = useRef(null);
   const bar = useRef(null);
-  const [menuMax, setMenuMax] = useState(null);
+  const [panel, setPanel] = useState(null);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     if (!open) return;
-    // Escape closes the menu and puts keyboard focus back on the menu button.
     const onKey = (e) => {
       if (e.key !== "Escape") return;
       setOpen(false);
       toggle.current?.focus();
     };
-    // Size the menu to the space below the header (banners above it vary), so its last item is always reachable.
-    const fit = () => setMenuMax(Math.max(240, window.innerHeight - bar.current.getBoundingClientRect().bottom));
-    // The menu only exists on narrow screens: close it if the window widens (e.g. a tablet is rotated).
-    const wide = window.matchMedia("(min-width: 1241px)");
+    // The menu fills the screen below the header (the banners above it vary in height).
+    const fit = () => {
+      const top = Math.max(0, bar.current.getBoundingClientRect().bottom);
+      setPanel({ top, height: window.innerHeight - top });
+    };
+    const wide = window.matchMedia("(min-width: 1181px)");
     const onWide = (e) => e.matches && setOpen(false);
     fit();
     document.addEventListener("keydown", onKey);
@@ -39,67 +46,58 @@ export default function Header() {
     };
   }, [open]);
 
-  const isCurrent = (href) => pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
+  const isCurrent = (href) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/"));
+  const link = (item) => (
+    <Link key={item.href} href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</Link>
+  );
 
   return (
     <header className="site-header">
-      <div className="container header-inner" ref={bar}>
+      <div className="wrap bar" ref={bar}>
+        <nav className="nav-side" aria-label="Main">{LEFT.map(link)}</nav>
         <Link href="/" className="brand" aria-label={`${BUSINESS.name}, home`}>
-          <img src={cdn(IMG.logo, 500)} alt="" width="160" height="67" />
-          <span className="brand-sub">Banquet &amp;<br />Conference Center</span>
+          <img src={cdn(IMG.logo, 500)} alt="" width="132" height="55" />
+          <span className="brand-sub">Banquet &amp; Conference Center</span>
         </Link>
-
-        <nav className="main-nav" aria-label="Main">
-          <ul>
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="header-actions">
-          <a className="header-phone" href={BUSINESS.phoneHref}>
-            <Phone />
-            <span>{BUSINESS.phone}</span>
-          </a>
+        <nav className="nav-side right" aria-label="More">
+          {RIGHT.map(link)}
           <Link className="btn btn-primary btn-sm" href="/contact">Book a tour</Link>
-          <button
-            type="button"
-            ref={toggle}
-            className="menu-toggle"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((o) => !o)}
-          >
+        </nav>
+        <div className="header-tools">
+          <a className="header-phone" href={BUSINESS.phoneHref}><Phone /><span className="sr-only">Call {BUSINESS.phone}</span></a>
+          <button type="button" ref={toggle} className="menu-toggle" aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen((o) => !o)}>
             {open ? <Close /> : <Menu />}
-            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+            {open ? "Close" : "Menu"}
           </button>
         </div>
       </div>
 
       <div
-        id="mobile-nav"
-        className="mobile-nav"
+        id="site-menu"
+        className="menu-panel"
         hidden={!open}
-        style={menuMax ? { maxHeight: menuMax } : undefined}
+        style={panel ? { top: panel.top, height: panel.height } : undefined}
         // Close after choosing any link, including the page you're already on.
         onClick={(e) => e.target.closest("a") && setOpen(false)}
       >
-        <nav aria-label="Mobile">
-          <ul>
-            <li><Link href="/" aria-current={pathname === "/" ? "page" : undefined}>Home</Link></li>
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</Link>
-              </li>
-            ))}
-            <li><Link href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined}>Contact</Link></li>
-            <li><Link href="/careers" aria-current={isCurrent("/careers") ? "page" : undefined}>Careers</Link></li>
-          </ul>
-          <a className="btn btn-primary btn-block" href={BUSINESS.phoneHref}><Phone /> Call {BUSINESS.phone}</a>
-        </nav>
+        <div className="wrap menu-inner">
+          <nav aria-label="Site menu">
+            <ol className="menu-list">
+              {MENU.map((item, i) => (
+                <li key={item.href}>
+                  <Link href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+                    <span aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>{item.label}
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </nav>
+          <div className="menu-aside">
+            <div className="frame"><Photo src={IMG.exteriorColor} alt="" sizes="40vw" widths={[500, 750, 1000]} /></div>
+            <address>{BUSINESS.street}<br />{BUSINESS.city}, {BUSINESS.region} {BUSINESS.postal}</address>
+            <a className="btn btn-primary btn-block" href={BUSINESS.phoneHref}><Phone /> Call {BUSINESS.phone}</a>
+          </div>
+        </div>
       </div>
     </header>
   );
