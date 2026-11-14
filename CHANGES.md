@@ -326,3 +326,9 @@ Full details are in USER-TESTING-REPORT.md.
   - Careers job cards line up with their heading.
   - Printed pages show all content.
   - Old Squarespace addresses now redirect permanently.
+
+### Smoother page changes
+- Moving between pages no longer cuts instantly. The current page fades out (0.16s), then the new page fades in with a slight rise (about 0.5s). The header and footer stay in place.
+- The first page a visitor lands on appears normally, with no delay.
+- Back and forward buttons, same-page links, new-tab clicks, PDFs and phone/email links all work as before.
+- Visitors who turn off motion in their device settings get instant page changes.
