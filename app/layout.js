@@ -13,6 +13,7 @@ import HiringBanner from "@/components/HiringBanner";
 // Hides the hiring bar before first paint for visitors who closed it (key matches components/HiringBanner.js).
 const hiringScript = `try{if(localStorage.getItem("cv-hiring-dismissed"))document.documentElement.classList.add("hire-off")}catch(e){}`;
 import ActionBar from "@/components/ActionBar";
+import Motion from "@/components/Motion";
 import PageTransitions from "@/components/PageTransitions";
 import { BUSINESS, IMG } from "@/lib/site";
 
@@ -71,6 +72,7 @@ export default function RootLayout({ children }) {
         <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
         <ActionBar />
+        <Motion />
         <PageTransitions />
         {!preview && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />}
       </body>

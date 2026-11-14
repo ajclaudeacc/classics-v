@@ -694,3 +694,28 @@ textarea:focus-visible { box-shadow: 0 0 0 1px var(--gold); }
   .ribbon li + li::before { display: none; }
 }
 .cine-quick strong { color: var(--white); }
+
+/* =====================================================================
+   Motion layer (components/Motion.js). Classes are added by script only,
+   so without it, or with reduced motion, everything simply shows.
+   ===================================================================== */
+#scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 300; background: linear-gradient(90deg, var(--gold-deep), var(--gold-light)); transform: scaleX(0); transform-origin: left; pointer-events: none; }
+.motion .rv { opacity: 0; transform: translateY(34px); }
+.motion .rv.in { opacity: 1; transform: none; transition: opacity 900ms var(--ease) var(--d, 0ms), transform 1150ms var(--ease) var(--d, 0ms); }
+.motion .rv-head { clip-path: inset(0 0 100% 0); transform: translateY(28px); }
+.motion .rv-head.in { clip-path: inset(-25% -4% -25% -4%); transform: none; transition: clip-path 1100ms cubic-bezier(0.7, 0, 0.2, 1) var(--d, 0ms), transform 1100ms var(--ease) var(--d, 0ms); }
+.motion .rv-img { clip-path: inset(100% 0 0 0); }
+.motion .rv-img img { transform: scale(1.18); }
+.motion .rv-img.in { clip-path: inset(0 0 0 0); transition: clip-path 1300ms cubic-bezier(0.7, 0, 0.2, 1) var(--d, 0ms); }
+.motion .rv-img.in img { transform: scale(1); transition: transform 1700ms var(--ease) var(--d, 0ms); }
+/* The gold line beside each section label draws itself in. */
+.motion .rv.kicker::before { width: 0; transition: width 900ms var(--ease) calc(var(--d, 0ms) + 250ms); }
+.motion .rv.kicker.in::before { width: 36px; }
+/* Parallax layers are slightly larger so their edges never show while they drift. */
+.hero-track { position: absolute; inset: 0; z-index: -2; }
+.hero-track, .page-top-img, .close-photo { will-change: transform; }
+@media (prefers-reduced-motion: reduce) { #scroll-progress { display: none; } }
+@media print { #scroll-progress { display: none; } .motion .rv, .motion .rv-head, .motion .rv-img, .motion .rv-img img { opacity: 1 !important; transform: none !important; clip-path: none !important; } }
+/* Photos that are themselves links (home collage) zoom on hover too. */
+a.frame img { transition: transform 900ms var(--ease); }
+a.frame:hover img, a.frame:focus-visible img { transform: scale(1.04); }

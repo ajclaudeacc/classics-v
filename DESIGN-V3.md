@@ -22,3 +22,14 @@ The original navy, white and gold, made cinematic. Every page, fact, menu, form 
 - `v3-midnight`: this design.
 
 To switch the live site to any of them, reset `main` to that branch. Vercel deploys it in about a minute. Vercel's "Instant Rollback" can also restore any earlier deployment in seconds.
+
+## Motion
+Set up in `components/Motion.js`. All of it is off for visitors who turn off motion in their device settings.
+
+- **Scroll reveals:** content fades and rises into view as you scroll to it, with list items arriving one after another.
+- **Headings and photos:** section headings wipe up into view. Photos are revealed with a wipe and settle from a slight zoom.
+- **Gold lines:** the gold line beside each section label draws itself in.
+- **Facts:** the numbers count up when they come into view.
+- **Parallax:** large background photos drift slower than the page.
+- **Progress line:** a thin gold line at the top of the screen shows how far down the page you are.
+- **Fail-safe:** nothing is hidden until the script runs, and anything already on screen is left alone, so content is never lost.

@@ -32,6 +32,7 @@ export default function HeroSlides({ slides, interval = 6000 }) {
 
   return (
     <div className="hero-slides">
+      <div className="hero-track">
       {slides.map((s, i) => (
         <img
           key={s.src}
@@ -48,6 +49,7 @@ export default function HeroSlides({ slides, interval = 6000 }) {
           height="1000"
         />
       ))}
+      </div>
       {!reduced && (
         <div className="hero-controls">
           <div className="hero-dots" role="group" aria-label="Choose a photo">
