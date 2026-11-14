@@ -146,7 +146,7 @@ Real visitors may notice things these simulations can't, especially about tone a
 ### 14. Teacher on the prom committee
 - **Liked:** The Prom Package cover on the Banquets page.
 - **Didn't like:** Prom isn't mentioned on the home page or in the menu, so they nearly gave up.
-- **Fixed:** Added "A prom" to the home page's "What are you planning?" shortcuts, linking straight to the menus.
+- **Update (Nov 14):** Prom was later removed from the site at the owner's request, so this persona no longer applies.
 
 ### 15. Ordering a catered office lunch
 - **Liked:**

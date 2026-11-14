@@ -22,7 +22,6 @@ const QUICK = [
   { href: "/weddings", label: "A wedding" },
   { href: "/banquetfacilities", label: "A shower or party" },
   { href: "/meetings", label: "A meeting" },
-  { href: "/banquetfacilities#menus", label: "A prom" },
   { href: "/funeral-gatherings", label: "A funeral gathering" },
   { href: "/drop-off", label: "Catering" },
 ];

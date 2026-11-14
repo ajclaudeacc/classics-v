@@ -267,7 +267,7 @@ appear on the current site; everything else is the original content, sometimes s
 ### PDF covers, hiring banner and photos page
 - **Every PDF now shows its cover.** I made an image of each PDF's first page (11 documents) and turned every PDF link into a cover card with the title, what's inside and the real page count. Selecting a card opens the PDF.
   - Weddings: the five wedding packages, plus "More for your wedding weekend" (bridal showers, rehearsal dinners, morning-after breakfast).
-  - Banquets & Showers: the breakfast & lunch menu, dinner menu, prom package, funeral gatherings and terms of agreement.
+  - Banquets & Showers: the breakfast & lunch menu, dinner menu, funeral gatherings and terms of agreement.
   - Meetings, Funeral Gatherings and Contact (terms of agreement): the same cover cards.
   - Catering already showed its menu pages, which link to the PDF. The old download list there became a button.
   - Card titles follow each document's own cover, for example "Wedding Package Add-ons" and "Dinner Stations Reception".
@@ -295,10 +295,12 @@ Full details are in USER-TESTING-REPORT.md.
   - Buttons, links and slideshow controls are at least 40–44px tall.
   - Long buttons wrap on very narrow screens.
 - **Content:**
-  - "A prom" shortcut on the home page.
   - Call and menu buttons at the top of the Funeral Gatherings page.
   - A "good to know" list on the Contact page: parking, the Holiday Inn Express and travel time, using the current site's wording.
   - An optional phone field on every contact form.
   - The Catering and Meetings top buttons scroll to the menu instead of downloading it.
 - **Accessibility:** the preview notice is a labeled region, the gold photo-count badges pass the contrast check, and the home page's main buttons come before the slideshow controls when using the Tab key.
 - **Sharing and search:** a preview image when links are shared, an official address for each page, and a "Page not found" title.
+
+### Prom removed
+- Removed prom from the site at the owner's request: the "A prom" home page shortcut and the Prom Package menu card on the Banquets & Showers page. The prom PDF is no longer linked anywhere.
