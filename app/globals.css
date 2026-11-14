@@ -220,10 +220,9 @@ a:hover .frame img, .frame a:hover img, .zoom:hover img { transform: scale(1.04)
 @media (max-width: 860px) { .head { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- "Events we host": big list, photo follows the pointer ---------- */
-.reveal-wrap { position: relative; }
 .reveal-list { border-top: 1px solid var(--line); }
 .reveal-list li { border-bottom: 1px solid var(--line); }
-.reveal-row { position: relative; display: grid; grid-template-columns: 70px minmax(0, 1.6fr) minmax(0, 0.8fr) 56px; align-items: center; gap: 28px; padding: clamp(22px, 2.6vw, 34px) 0; color: var(--white); text-decoration: none; }
+.reveal-row { position: relative; display: grid; grid-template-columns: 70px minmax(0, 1.5fr) minmax(0, 0.8fr) 170px 56px; align-items: center; gap: 28px; padding: clamp(22px, 2.6vw, 34px) 0; color: var(--white); text-decoration: none; }
 .reveal-num { font: 500 0.76rem/1 var(--sans); letter-spacing: 0.2em; color: var(--gold); }
 .reveal-title { font: 400 clamp(2rem, 4.6vw, 4rem)/1 var(--display); letter-spacing: -0.02em; transition: transform 400ms var(--ease), color 250ms; }
 .reveal-line { color: var(--muted); font-weight: 300; transition: color 250ms; }
@@ -232,13 +231,10 @@ a:hover .frame img, .frame a:hover img, .zoom:hover img { transform: scale(1.04)
 .reveal-row:hover .reveal-title, .reveal-row:focus-visible .reveal-title { color: var(--gold-light); transform: translateX(14px); }
 .reveal-row:hover .reveal-line { color: var(--text); }
 .reveal-row:hover .reveal-arrow { background: var(--gold); color: var(--deep); transform: rotate(-45deg); }
-.reveal-thumb { display: none; }
-.reveal-float { position: absolute; left: 0; top: 0; z-index: 5; width: 300px; aspect-ratio: 4 / 3; pointer-events: none; overflow: hidden; opacity: 0; transform: translate(-50%, -50%) scale(0.85); transition: opacity 250ms ease, transform 350ms var(--ease); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7); }
-.reveal-float.is-on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-.reveal-float img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 300ms; }
-.reveal-float img.is-current { opacity: 1; }
+.reveal-thumb { display: block; aspect-ratio: 3 / 2; }
+.reveal-thumb img { transition: transform 900ms var(--ease); }
+.reveal-row:hover .reveal-thumb img { transform: scale(1.06); }
 @media (hover: none), (max-width: 860px) {
-  .reveal-float { display: none; }
   .reveal-row { grid-template-columns: 34px minmax(0, 1fr) 104px; gap: 4px 16px; }
   .reveal-thumb { display: block; grid-column: 3; grid-row: 1 / span 2; aspect-ratio: 4 / 3; }
   .reveal-line { grid-column: 2; grid-row: 2; font-size: 0.95rem; }

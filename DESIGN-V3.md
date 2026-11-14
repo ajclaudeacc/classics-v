@@ -7,7 +7,7 @@ The original navy, white and gold, made cinematic. Every page, fact, menu, form 
   - **Opening:** a full-screen photo slideshow (including the outside view) under a giant headline. Each photo slowly zooms as it crossfades, with a pause button and photo dots.
   - **Occasions:** a gold-marked ribbon (weddings, showers, anniversaries and more).
   - **Facts:** large gold numbers.
-  - **Events we host:** a big numbered list. On a computer, the matching photo follows the mouse over each line; on phones each line shows its photo.
+  - **Events we host:** a big numbered list, each line with its own small photo that zooms slightly on hover.
   - **Rooms:** tall photo cards with guest counts in gold, in a strip you can swipe or step through with arrows.
   - **The rest:** a photo collage, events, menu covers with gold frames, three steps, the address set large, and a closing band over a photo.
 - **Inner pages:** a full-screen photo with the title at its foot, then numbered chapters with large gold italic numerals.
