@@ -46,7 +46,7 @@ export default function Home() {
       <section className="hero">
         <div className="container hero-inner">
           <p className="script hero-script">{BUSINESS.tagline}</p>
-          <h1>Wedding venue, banquet hall &amp; conference center in Amherst, NY</h1>
+          <h1>Wedding venue, banquet hall &amp; conference center</h1>
           <p className="hero-lead">Family owned and operated since {BUSINESS.since}. Great food, customizable packages and personal planning help for weddings, showers, meetings and every celebration in between.</p>
           <div className="hero-actions">
             <Link className="btn btn-primary btn-lg" href="/contact">Book a private tour</Link>
