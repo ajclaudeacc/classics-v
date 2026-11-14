@@ -30,7 +30,7 @@ export default function Facts() {
     return () => io.disconnect();
   }, []);
   const rooms = useCount(4, run, 900, 0);
-  const max = useCount(500, run, 1500, 0);
+  const max = useCount(500, run, 1500, 35);
   const year = useCount(1985, run, 1500, 1950);
   return (
     <section className="facts" aria-label="At a glance" ref={ref}>

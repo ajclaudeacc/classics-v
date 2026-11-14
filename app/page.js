@@ -36,8 +36,8 @@ const MOSAIC = [
 
 export const metadata = { alternates: { canonical: "/" } };
 
-// Rebuild daily so past events drop off on their own.
-export const revalidate = 86400;
+// Rebuild hourly so past events drop off on their own soon after the day ends.
+export const revalidate = 3600;
 
 export default function Home() {
   const events = upcomingEvents();
@@ -158,17 +158,15 @@ export default function Home() {
         </div>
       </section>
 
-      {events.length > 0 && (
-        <section id="events" className="section events-section" aria-labelledby="events-title">
-          <div className="container">
-            <div className="section-head">
-              <h2 id="events-title">Upcoming public events</h2>
-              <p>Dances, live music and seasonal parties. Tickets are sold through each event&rsquo;s ticketing page.</p>
-            </div>
-            <Events events={events} />
+      <section id="events" className="section events-section" aria-labelledby="events-title">
+        <div className="container">
+          <div className="section-head">
+            <h2 id="events-title">Upcoming public events</h2>
+            <p>Dances, live music and seasonal parties. Tickets are sold through each event&rsquo;s ticketing page.</p>
           </div>
-        </section>
-      )}
+          <Events events={events} />
+        </div>
+      </section>
 
       <MenuShowcase />
 

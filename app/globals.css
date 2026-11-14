@@ -586,7 +586,7 @@ h1, h2 { letter-spacing: -0.005em; }
 }
 
 /* Careers */
-.jobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+.jobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 0; }
 .job-card { position: relative; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); display: grid; gap: 10px; align-content: start; }
 .job-card h3 { font-size: 1.6rem; margin: 0; }
 .job-card p { margin: 0; }
@@ -780,3 +780,14 @@ h1, h2 { letter-spacing: -0.005em; }
 @media (max-width: 560px) { .contact-head { padding: 40px 0 20px; } }
 /* Keep the hero text and buttons above the slideshow layer (which comes later in the page for keyboard order). */
 .hero-inner { position: relative; z-index: 1; }
+/* Printing: show everything, even sections that haven't faded in yet. */
+@media print {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .hiring-bar, .preview-banner, .hero-controls, .site-header .menu-toggle { display: none !important; }
+}
+.events-empty { display: flex; gap: 20px; align-items: flex-start; padding: 28px; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: var(--radius); box-shadow: var(--shadow); max-width: 760px; }
+.events-empty h3 { margin: 0 0 6px; font-size: 1.4rem; }
+.events-empty p { margin: 0; color: var(--muted); }
+.events-empty-icon { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-soft); color: var(--gold-deep); }
+.events-empty-icon svg { width: 26px; height: 26px; }
+@media (max-width: 560px) { .events-empty { flex-direction: column; gap: 14px; padding: 22px; } }

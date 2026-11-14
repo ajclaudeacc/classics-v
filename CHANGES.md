@@ -304,3 +304,25 @@ Full details are in USER-TESTING-REPORT.md.
 
 ### Prom shortcut removed
 - Removed the "A prom" shortcut from the home page. The Prom Package menu card stays on the Banquets & Showers page, as it is on the current site.
+
+### Bug sweep (Nov 14)
+- **Home page buttons:** the slideshow layer was covering "Book a private tour", the phone number and the "What are you planning?" options. Fixed, and every one of the site's 871 links and buttons was click-tested on computer and phone.
+- **Events:**
+  - "Today" now follows Buffalo time, not UTC, so an event stays listed through its evening.
+  - The home page refreshes hourly instead of daily.
+  - When nothing is scheduled, the events section stays and shows "New events are on the way" with Facebook, Instagram and phone links. Before, the section disappeared and the old /special-events address landed on nothing.
+- **Phone menu:**
+  - Tapping the page you're already on now closes the menu.
+  - Escape returns keyboard focus to the menu button.
+  - Widening the window or rotating a tablet closes the menu and unlocks scrolling.
+  - On short phones, the menu now fits under the banners, so its last item is always reachable.
+- **Forms:**
+  - Bad or empty requests no longer crash the server.
+  - Only text values are accepted.
+  - A phone number on the contact forms, when given, must be a real number.
+  - If the database is unreachable, visitors see the "please call us" message within 8 seconds instead of 30.
+- **Small fixes:**
+  - The "35 to 500 guests" count-up no longer shows numbers below 35.
+  - Careers job cards line up with their heading.
+  - Printed pages show all content.
+  - Old Squarespace addresses now redirect permanently.

@@ -4,8 +4,8 @@ const nextConfig = {
     return [
       // Old addresses from the current site.
       { source: "/home", destination: "/", permanent: true },
-      { source: "/special-events", destination: "/#events", permanent: false },
-      { source: "/photos-1", destination: "/classicsfivephotos", permanent: false },
+      { source: "/special-events", destination: "/#events", permanent: true },
+      { source: "/photos-1", destination: "/classicsfivephotos", permanent: true },
     ];
   },
 };

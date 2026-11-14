@@ -4,10 +4,12 @@ import { JOBS } from "@/lib/site";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DAYS = ["weekdays", "weeknights", "weekends"];
-const clean = (v, max) => String(v ?? "").trim().slice(0, max);
+// Only plain text is accepted; anything else (objects, lists, numbers) counts as empty.
+const clean = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
 export async function POST(request) {
-  const body = await request.json().catch(() => ({}));
+  const parsed = await request.json().catch(() => null);
+  const body = parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
   if (body.company) return NextResponse.json({ ok: true }); // honeypot
 
   const data = {

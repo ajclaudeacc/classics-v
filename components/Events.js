@@ -31,6 +31,21 @@ function DateBadge({ date }) {
 }
 
 export default function Events({ events }) {
+  if (events.length === 0) {
+    return (
+      <div className="events-empty">
+        <span className="events-empty-icon"><Calendar /></span>
+        <div>
+          <h3>New events are on the way</h3>
+          <p>
+            We host dances, live music and seasonal parties throughout the year. See what&rsquo;s next on{" "}
+            <a href={BUSINESS.social[0].href}>Facebook</a> and <a href={BUSINESS.social[1].href}>Instagram</a>, or call{" "}
+            <a href={BUSINESS.phoneHref}>{BUSINESS.phone}</a>.
+          </p>
+        </div>
+      </div>
+    );
+  }
   const [featured, ...rest] = events;
   return (
     <>
