@@ -73,7 +73,7 @@ export default function Banquets() {
             <Ornament />
             <p>Select a cover to open the full menu with pricing.</p>
           </div>
-          <PdfCards docs={[DOCS.lunch, DOCS.dinner, DOCS.funeral, DOCS.terms]} />
+          <PdfCards docs={[DOCS.lunch, DOCS.dinner, DOCS.prom, DOCS.funeral, DOCS.terms]} />
 
           <div className="weekend">
             <h3 className="weekend-title">More ways to customize</h3>
