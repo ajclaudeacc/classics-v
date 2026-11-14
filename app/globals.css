@@ -138,7 +138,7 @@ address { font-style: normal; }
 }
 
 /* Inner page hero */
-.page-hero { position: relative; isolation: isolate; color: #fff; min-height: 420px; display: flex; align-items: flex-end; }
+.page-hero { position: relative; isolation: isolate; background: var(--ink); color: #fff; min-height: 420px; display: flex; align-items: flex-end; }
 .page-hero-inner { padding-top: 96px; padding-bottom: 56px; }
 .page-hero h1 { color: #fff; max-width: 18em; }
 .page-hero-intro { font-size: 1.15rem; max-width: 40rem; color: #e6ecf3; }
@@ -793,11 +793,16 @@ h1, h2 { letter-spacing: -0.005em; }
 @media (max-width: 560px) { .events-empty { flex-direction: column; gap: 14px; padding: 22px; } }
 
 /* ---------- Page transitions ---------- */
-/* The first page a visitor lands on appears normally; pages reached by clicking around fade in. */
-.page-anim .page-fade { animation: page-in 460ms cubic-bezier(0.22, 0.8, 0.24, 1) both; }
-@keyframes page-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-#main.is-leaving .page-fade { opacity: 0; transform: translateY(-6px); transition: opacity 160ms ease-in, transform 160ms ease-in; }
+/* Pages dim into the site's dark navy and the next page fades up out of it, so there is never a white flash.
+   (Most pages open on a dark photo, so the change stays dark-to-dark.) The first page a visitor lands on appears normally. */
+#main.is-leaving, #main.is-entering { background: var(--ink); }
+/* The page carries its own background so it brightens smoothly out of the navy instead of snapping at the end. */
+#main.is-leaving .page-fade, #main.is-entering .page-fade { background: var(--bg); }
+#main.is-leaving .page-fade { opacity: 0; transition: opacity 220ms ease-out; }
+#main.is-entering .page-fade { animation: page-in 560ms cubic-bezier(0.25, 0.6, 0.3, 1) both; }
+@keyframes page-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .page-anim .page-fade { animation: none; }
-  #main.is-leaving .page-fade { opacity: 1; transform: none; transition: none; }
+  #main.is-leaving, #main.is-entering { background: none; }
+  #main.is-leaving .page-fade { opacity: 1; transition: none; }
+  #main.is-entering .page-fade { animation: none; }
 }

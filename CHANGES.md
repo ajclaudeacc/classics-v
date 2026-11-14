@@ -332,3 +332,9 @@ Full details are in USER-TESTING-REPORT.md.
 - The first page a visitor lands on appears normally, with no delay.
 - Back and forward buttons, same-page links, new-tab clicks, PDFs and phone/email links all work as before.
 - Visitors who turn off motion in their device settings get instant page changes.
+
+### Gentler page transitions
+- Page changes no longer flash white. The current page dims into the site's dark navy (0.22s), and the new page fades up out of it (about 0.5s).
+- If the new page's top photo isn't ready yet, the fade waits for it (up to 0.7s), so the photo never pops in after the fade.
+- Top photo areas have a navy backdrop while their photo loads.
+- Back and forward buttons change pages instantly, as browsers normally do.
